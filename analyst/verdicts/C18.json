@@ -1,0 +1,25 @@
+{
+  "corridor_id": 18,
+  "od_description": "Sadrebal ↔ Gulab Bagh via Nowshera (N/NE Srinagar). Part of the NE-Srinagar local cluster.",
+  "matched_permit": "Srinagar to Gulabagh",
+  "matched_permit_id": "FDR-144",
+  "match_confidence": "low",
+  "is_informal": false,
+  "plausible": true,
+  "stops_verdict": "Stops along the NE line present but corridor support is thin (2 drivers).",
+  "narrative": "Sadrebal ↔ Gulab Bagh via Nowshera — the NE-Srinagar local cluster again (with C2/C9/C11). FDR-144 'Srinagar to Gulabagh' matches the Gulab Bagh endpoint but only 0.34 overlap; the Rangpora routes are 0.46 but wrong O–D. THIN support (5 runs / 2 drivers / 3 days). Consistent with the under-permitted NE-Srinagar local network; not asserted strongly on 2 drivers.",
+  "evidence_used": [
+    "geocoded endpoints: Sadrebal (A), Gulab Bagh (B), Nowshera (mid)",
+    "FDR-144 'Srinagar to Gulabagh' = endpoint match but 0.34 overlap; no clean match",
+    "same NE-Srinagar cluster (C2/C9/C11)",
+    "support THIN: 2 drivers, 3 days"
+  ],
+  "data_quality_flags": [
+    "thin support (2 drivers) — tentative",
+    "reinforces the NE-Srinagar under-permitted local cluster",
+    "implied_headway 216 min is a partial-adoption artifact"
+  ],
+  "needs_human_review": true,
+  "analyst_model": "claude-opus-4-8 (inline)",
+  "ts": "2026-07-02"
+}

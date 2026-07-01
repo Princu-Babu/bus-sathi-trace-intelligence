@@ -1,0 +1,24 @@
+{
+  "corridor_id": 14,
+  "od_description": "Batamaloo (main Srinagar terminal) ↔ Budgam / Badgam (Budgam district HQ) via Peerbagh.",
+  "matched_permit": "",
+  "matched_permit_id": "",
+  "match_confidence": "low",
+  "is_informal": false,
+  "plausible": true,
+  "stops_verdict": "Batamaloo end well-corroborated (367 visits / 23 drivers = the terminal), but the corridor itself is thin (3 drivers).",
+  "narrative": "Batamaloo ↔ Budgam via Peerbagh — a plausibly major Srinagar↔Budgam corridor (Batamaloo is the main minibus terminal, Budgam a district HQ). But NO candidate permit matches its O–D: all are Batamaloo-to-elsewhere (Arath, Khrew, Drussu) or Parimpora–Humhama, at just 0.22 overlap. THIN support (9 runs / 3 drivers / 6 days). Notable-if-confirmed: the Srinagar↔Budgam corridor may be under-covered by the permit plan — but too thin here to assert. Needs RTO check.",
+  "evidence_used": [
+    "geocoded endpoints: Batamaloo (A, main terminal), Budgam/Badgam (B, district HQ), Peerbagh (mid)",
+    "no candidate matches O–D (all 0.22 overlap, wrong destinations)",
+    "support THIN: 3 drivers, 6 days"
+  ],
+  "data_quality_flags": [
+    "thin support (3 drivers) — tentative",
+    "potential under-covered corridor (Srinagar↔Budgam) but not asserted on 3 drivers",
+    "implied_headway 320 min is a partial-adoption artifact"
+  ],
+  "needs_human_review": true,
+  "analyst_model": "claude-opus-4-8 (inline)",
+  "ts": "2026-07-02"
+}

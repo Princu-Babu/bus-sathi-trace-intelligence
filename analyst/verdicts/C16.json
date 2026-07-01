@@ -1,0 +1,23 @@
+{
+  "corridor_id": 16,
+  "od_description": "Magarmal Bagh / Jehangir Chowk (central Srinagar) ↔ Narbal (Budgam, on Gulmarg Road) via Qamarwari.",
+  "matched_permit": "Narbal to Jehangir Chowk",
+  "matched_permit_id": "FDR-455",
+  "match_confidence": "high",
+  "is_informal": false,
+  "plausible": true,
+  "stops_verdict": "Qamarwari stop well-corroborated (669 visits) though corridor support is thin (2 drivers). Endpoints clear.",
+  "narrative": "Clean match: FDR-455 'Narbal to Jehangir Chowk' at 1.0 overlap with exact endpoint names (Magarmal Bagh ≈ Jehangir Chowk; Narbal). Several regional routes (Srinagar→Shanglipora/Aboora/Baderkote) also show 1.0 because they run through Narbal, but they continue 26-43 km further; the observed corridor ends at Narbal (14.3 km ≈ FDR-455's 17 km), so FDR-455 is correct. Support thin (6 runs / 2 drivers) but the geometric+name match is unambiguous. Narbal is in Budgam district = IN the study area (stale OUT_OF_AREA tag corrected).",
+  "evidence_used": [
+    "geocoded endpoints: Magarmal Bagh≈Jehangir Chowk (A), Narbal (B, Budgam), Qamarwari (mid)",
+    "FDR-455 'Narbal to Jehangir Chowk' = 1.0 overlap + exact endpoint match; observed ends at Narbal (not the longer regional routes)",
+    "support thin: 2 drivers"
+  ],
+  "data_quality_flags": [
+    "thin support (2 drivers) — but match is unambiguous (1.0 overlap + name)",
+    "script verdict OUT_OF_AREA is wrong; Narbal (Budgam) is in the study area"
+  ],
+  "needs_human_review": false,
+  "analyst_model": "claude-opus-4-8 (inline)",
+  "ts": "2026-07-02"
+}

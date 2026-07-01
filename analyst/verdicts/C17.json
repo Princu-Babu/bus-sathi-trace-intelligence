@@ -1,0 +1,24 @@
+{
+  "corridor_id": 17,
+  "od_description": "Short (3.3 km) near-stationary activity around the Pampore terminal (both endpoints within ~1.4 km of Pampore; the 'Srinagar' geocode is a mislabel of a point next to Pampore).",
+  "matched_permit": "",
+  "matched_permit_id": "",
+  "match_confidence": "n/a",
+  "is_informal": false,
+  "plausible": false,
+  "stops_verdict": "Dominated by dwell (74% of time); not a boarding-stop pattern — looks like idling/layover near the Pampore stand.",
+  "narrative": "LIKELY ARTIFACT, not a real service. 3.3 km, effective 4.6 km/h, dwell share 74%, only 2 drivers / 6 runs, evening-only — both endpoints sit within ~1.4 km of the Pampore terminal. This is near-stationary activity (idling/short shuffles around the Pampore stand) that slipped through run segmentation, not a bus corridor. No permit match (≤0.34). EXCLUDE from corridor findings.",
+  "evidence_used": [
+    "effective speed 4.6 km/h + dwell share 74% = mostly stopped",
+    "both endpoints ~1.4 km apart, around Pampore; 'Srinagar' geocode is next to Pampore",
+    "thin (2 drivers), evening-only",
+    "no permit overlap >0.34"
+  ],
+  "data_quality_flags": [
+    "LIKELY NON-SERVICE ARTIFACT — exclude from findings",
+    "segmentation should have trimmed this; candidate to tighten wandering/dwell filter"
+  ],
+  "needs_human_review": true,
+  "analyst_model": "claude-opus-4-8 (inline)",
+  "ts": "2026-07-02"
+}

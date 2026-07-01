@@ -5,9 +5,20 @@ corridors; 18 are support-gated for AI analysis. Old verdicts (C1, C2 on the old
 IDs) were reset — corridor IDs changed._
 
 - **Total corridors to analyse:** 18 (support-gated ≥5 runs, ≥2 drivers; 25 total)
-- **Done:** 8
-- **Remaining:** 10
-- **Next:** C9
+- **Done:** 18 ✅  **Remaining:** 0  →  run `src/aggregate_corridors.py`
+
+### Headline findings (all 18)
+- **Matched to permits (7):** C1 Soura↔Lal Chowk (FDR-050), C4 Soura↔Nowgam/railway
+  (FDR-262, 0.99), C5/C6 Pampore↔Srinagar (FDR-370), C7 Nawa Kadal↔Zoonimar
+  (FDR-270), C8 Jehangir Chowk↔Safa Kadal (FDR-575), C16 Jehangir Chowk↔Narbal
+  (FDR-455). AI beat the overlap threshold on C1/C8/C16.
+- **NE-Srinagar under-permitted local cluster (finding):** C2, C9, C11, C15, C18 —
+  Soura/Zoonimar/Lal Bazar/Nowshera/Ellahibagh/Gulab Bagh: busy local corridors
+  the formal permits barely cover (≤0.40 overlap). Warrants a formal feeder/loop.
+- **C12 informal:** Nowhatta↔Karan Nagar (SMHS/Medical College access), no permit.
+- **C14 (thin):** Batamaloo↔Budgam may be under-covered — RTO check.
+- **Out-of-area (2):** C3 Udhampur↔Chenani, C10 Batote↔Mera (Jammu division NH-44).
+- **Artifact (1):** C17 Pampore-terminal shuffle (74% dwell) — exclude; tighten filter.
 
 ### Batch 1 verdicts (C1–C8)
 | C | O→D | verdict | permit |

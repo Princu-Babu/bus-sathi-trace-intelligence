@@ -1,0 +1,26 @@
+{
+  "corridor_id": 11,
+  "od_description": "Zoonimar ↔ Gulab Bagh via Lal Bazar (N/NE Srinagar). Third corridor in the NE-Srinagar local cluster (C2, C9, C11).",
+  "matched_permit": "Parimpora to Harwan via Brein Nishat",
+  "matched_permit_id": "SSCL-01",
+  "match_confidence": "low",
+  "is_informal": false,
+  "plausible": true,
+  "stops_verdict": "Strong stops along Zoonimar–Lal Bazar–Gulab Bagh; genuine local boarding points.",
+  "narrative": "Zoonimar ↔ Gulab Bagh via Lal Bazar — the third busy NE-Srinagar local corridor (with C2, C9) whose formal-permit coverage is very weak (all candidates ≤0.31 overlap, all Parimpora/Hazratbal routes). in_area=true (the stale 'OUT_OF_AREA' script tag is wrong — this is clearly within Srinagar). 26 runs / 9 drivers. Reinforces the finding of an under-served local network in NE Srinagar.",
+  "evidence_used": [
+    "geocoded endpoints: Zoonimar (A), Gulab Bagh (B), Lal Bazar (mid) — all N/NE Srinagar",
+    "all permit overlaps ≤0.31 — no clean match",
+    "same cluster as C2 + C9",
+    "support: 26 runs, 9 drivers, 15 days"
+  ],
+  "data_quality_flags": [
+    "script verdict field said OUT_OF_AREA but in_area=true — corrected to in-area (Srinagar)",
+    "weak permit coverage — NE-Srinagar under-permitted local cluster (C2/C9/C11)",
+    "implied_headway 381 min is a partial-adoption artifact"
+  ],
+  "needs_human_review": true,
+  "analyst_note": "Consolidated finding: NE-Srinagar local network (Soura/Zoonimar/Lal Bazar/Nowshera/Ellahibagh/Gulab Bagh) is a real coverage gap in the permit plan — warrants a formal feeder/loop.",
+  "analyst_model": "claude-opus-4-8 (inline)",
+  "ts": "2026-07-02"
+}

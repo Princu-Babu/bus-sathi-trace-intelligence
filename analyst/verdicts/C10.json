@@ -1,0 +1,20 @@
+{
+  "corridor_id": 10,
+  "od_description": "Batote ↔ Mera on NH-44 via Baglihar, Ramban district — JAMMU division (Srinagar–Jammu highway).",
+  "matched_permit": "",
+  "matched_permit_id": "",
+  "match_confidence": "n/a",
+  "is_informal": false,
+  "plausible": true,
+  "stops_verdict": "Highway stops around Batote (64/15) and Mera; genuine but on a Jammu-division route. High dwell at Baglihar (207s) = highway halt.",
+  "narrative": "OUT OF AREA. Batote ↔ Mera on NH-44 (Baglihar/Ramban), ~108 km south of Srinagar in Jammu division. in_area=false; only a 0.0-overlap candidate. Real highway service (29 runs / 13 drivers, moving 39.5 km/h, low dwell) captured by the app but outside the Kashmir study area.",
+  "evidence_used": [
+    "in_area=false; dist_hub_km=108",
+    "geocoded endpoints: Batote, Mera, Baglihar — all Ramban/Jammu division on NH-44",
+    "no permit overlap (0.0); highway speed profile 39.5 km/h"
+  ],
+  "data_quality_flags": ["out of Kashmir study area — exclude from Kashmir findings"],
+  "needs_human_review": false,
+  "analyst_model": "claude-opus-4-8 (inline)",
+  "ts": "2026-07-02"
+}

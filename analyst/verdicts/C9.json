@@ -1,0 +1,25 @@
+{
+  "corridor_id": 9,
+  "od_description": "Nowshera ↔ Ellahibagh via Lal Bazar (NE Srinagar). A short local corridor in the same NE cluster as C2.",
+  "matched_permit": "Parimpora to Harwan via Brein Nishat",
+  "matched_permit_id": "SSCL-01",
+  "match_confidence": "low",
+  "is_informal": false,
+  "plausible": true,
+  "stops_verdict": "Strong stops along the Nowshera–Lal Bazar–Ellahibagh line; genuine local boarding points.",
+  "narrative": "Another NE-Srinagar local corridor (Nowshera ↔ Ellahibagh via Lal Bazar), corroborating C2. All candidate permits are Parimpora/Hazratbal routes with ≤0.40 overlap — none cleanly covers this O–D. Best partial is SSCL-01 (shares the Lal Bazar–Nishat arm). 32 runs / 7 drivers. Part of a cluster (C2, C9) of busy NE-Srinagar local circulation that the formal permit network covers poorly.",
+  "evidence_used": [
+    "geocoded endpoints: Nowshera (A), Ellahibagh (B), Lal Bazar (mid)",
+    "all permit overlaps ≤0.40 — no clean match; best SSCL-01 partial",
+    "same NE-Srinagar cluster as C2",
+    "support: 32 runs, 7 drivers, 22 days"
+  ],
+  "data_quality_flags": [
+    "weak permit coverage — candidate local corridor for RTO review (cluster with C2)",
+    "implied_headway 536 min is a partial-adoption artifact"
+  ],
+  "needs_human_review": true,
+  "analyst_note": "NE-Srinagar under-permitted local cluster (C2 + C9): Nowshera / Lal Bazar / Ellahibagh / Soura area — worth a formal feeder route.",
+  "analyst_model": "claude-opus-4-8 (inline)",
+  "ts": "2026-07-02"
+}

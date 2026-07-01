@@ -1,0 +1,23 @@
+{
+  "corridor_id": 13,
+  "od_description": "Karan Nagar ↔ Nawa Kadal via Noor Bagh (NW Srinagar, Qamarwari area).",
+  "matched_permit": "Parimpora to Saidakadal",
+  "matched_permit_id": "FDR-106",
+  "match_confidence": "low",
+  "is_informal": false,
+  "plausible": true,
+  "stops_verdict": "Stops present but from only 2 drivers — not broadly corroborated.",
+  "narrative": "A NW-Srinagar local corridor (Karan Nagar ↔ Nawa Kadal via Noor Bagh). THIN SUPPORT: only 2 drivers over 4 days (15 runs) — it barely clears the support gate and may reflect two drivers' short-window pattern rather than an established route. All candidate permits are a uniform 0.34 overlap (none matches). Recorded as low-confidence PARTIAL; not asserting informal on 2 drivers.",
+  "evidence_used": [
+    "geocoded endpoints: Karan Nagar (A), Nawa Kadal (B), Noor Bagh (mid) — NW Srinagar",
+    "all candidate overlaps 0.34 — no clean match",
+    "support THIN: 2 drivers, 4 days, 15 runs"
+  ],
+  "data_quality_flags": [
+    "thinnest support in the gated set (2 drivers / 4 days) — treat as tentative",
+    "implied_headway 128 min is a partial-adoption artifact from a short window"
+  ],
+  "needs_human_review": true,
+  "analyst_model": "claude-opus-4-8 (inline)",
+  "ts": "2026-07-02"
+}

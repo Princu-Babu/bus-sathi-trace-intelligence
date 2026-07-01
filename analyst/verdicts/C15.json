@@ -1,0 +1,23 @@
+{
+  "corridor_id": 15,
+  "od_description": "Rambagh (SW-central Srinagar) ↔ Ellahibagh (NE) via Rainawari — a long cross-city diagonal along the Dal-east side.",
+  "matched_permit": "Batamaloo to Hazratbal via Khanyar",
+  "matched_permit_id": "SSCL-03",
+  "match_confidence": "low",
+  "is_informal": false,
+  "plausible": true,
+  "stops_verdict": "Passes strong central stops (1395/39 near Rambagh) and the NE-cluster stops; genuine but corridor support is modest.",
+  "narrative": "A long SW→NE cross-city corridor via Rainawari/Dal-east (Rambagh ↔ Ellahibagh). All candidate permits are Hazratbal/TRC routes with ≤0.38 overlap — no clean match; script flagged INFORMAL. Support modest (7 runs / 4 drivers / 6 days). Touches the same NE cluster (Ellahibagh/Rainawari) as C2/C9/C11. Candidate informal cross-city diagonal — RTO to confirm; not asserted strongly on 4 drivers.",
+  "evidence_used": [
+    "geocoded endpoints: Rambagh (A), Ellahibagh (B), Rainawari (mid)",
+    "all permit overlaps ≤0.38 — no clean match; best SSCL-03 0.38",
+    "support modest: 7 runs, 4 drivers, 6 days"
+  ],
+  "data_quality_flags": [
+    "modest support (4 drivers) — tentative informal candidate",
+    "implied_headway 360 min is a partial-adoption artifact"
+  ],
+  "needs_human_review": true,
+  "analyst_model": "claude-opus-4-8 (inline)",
+  "ts": "2026-07-02"
+}

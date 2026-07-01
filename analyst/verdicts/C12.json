@@ -1,0 +1,24 @@
+{
+  "corridor_id": 12,
+  "od_description": "Nowhatta (old city) ↔ Karan Nagar (SMHS / Medical College area) via Chotta Bazar / Medical College Road. Short central hospital-access corridor.",
+  "matched_permit": "Batamaloo to Womens College Batpora via Rainawari",
+  "matched_permit_id": "SSCL-17",
+  "match_confidence": "low",
+  "is_informal": true,
+  "plausible": true,
+  "stops_verdict": "Strong stops along the old city–Chotta Bazar–Karan Nagar line; genuine local boarding points near Medical College.",
+  "narrative": "Short old-city ↔ Karan Nagar corridor via Chotta Bazar (Medical College Road) — likely SMHS/Medical College access. All candidate permits are geographically off with ≤0.41 overlap; no permit covers this O–D. Script flagged INFORMAL, and the analysis agrees: a genuine local corridor (22 runs / 9 drivers) without a matching permit — candidate informal route for RTO confirmation.",
+  "evidence_used": [
+    "geocoded endpoints: Nowhatta (A, old city), Karan Nagar (B, Medical College), Chotta Bazar (mid)",
+    "all permit overlaps ≤0.41 — no clean match; best partial SSCL-17 0.41",
+    "coherent hospital-access O–D",
+    "support: 22 runs, 9 drivers, 18 days"
+  ],
+  "data_quality_flags": [
+    "informal candidate — no matching permit; RTO to confirm before formalising",
+    "implied_headway 638 min is a partial-adoption artifact"
+  ],
+  "needs_human_review": true,
+  "analyst_model": "claude-opus-4-8 (inline)",
+  "ts": "2026-07-02"
+}

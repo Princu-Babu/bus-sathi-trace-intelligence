@@ -34,12 +34,20 @@ See [`PROFILE.md`](PROFILE.md) for the current profile (regenerated per run).
 
 ## Pipeline (planned)
 
-1. **Export** — `trips` → local raw store *(done: `src/export_traces.py`)*
-2. **Segment** — split each shift-long trip into runs on time gaps *(prototype: `src/match_traces.py`)*
-3. **Denoise / map-match** — snap each run to roads via **OSRM `/match`** *(prototype, sample-validated)*
-4. **Infer corridors** — cluster matched runs sharing road segments *(next)*
+0. **Cache** — pull every session's points once → local pickle *(done: `src/pull_cache.py`)*
+1. **Sessionise** — split each app SESSION into real service RUNS: detect dwells,
+   split at terminals (≥12 min) & gaps (≥8 min), trim idle, drop wandering,
+   record service-stop dwells *(done: `src/segment.py`)*
+2. **Denoise / map-match** — snap each run to roads via **OSRM `/match`** *(done: `src/match_runs.py`)*
+3. **Cluster stops** — DBSCAN the dwells → recurring/informal stops *(done: `src/stops.py`)*
+4. **Infer corridors** — cluster matched runs sharing road segments → observed frequency *(next)*
 5. **Match to permits** — link observed corridors ↔ RTO permit routes *(next)*
 6. **Calibrate** — feed observed frequency/coverage back into the engine *(next)*
+
+### Sessionising impact (real data)
+1,200 sessions → **2,526 real runs** (604 sessions held ≥2; up to 10). **2,012 h**
+of background/idle trimmed. Median raw session **209 min** → median real run
+**63 min**; median run **15.8 km** at **13.3 km/h** — realistic bus speeds.
 
 **Sample map-match finding:** on genuine moving runs the matched line hugs the
 raw GPS tightly (see `data/sample_before_after.png`). OSRM's own `confidence`

@@ -41,8 +41,20 @@ See [`PROFILE.md`](PROFILE.md) for the current profile (regenerated per run).
 2. **Denoise / map-match** — snap each run to roads via **OSRM `/match`** *(done: `src/match_runs.py`)*
 3. **Cluster stops** — DBSCAN the dwells → recurring/informal stops *(done: `src/stops.py`)*
 4. **Infer corridors** — terminal-DBSCAN → OD corridors + observed frequency *(done: `src/corridors.py`)*
-5. **Match to permits** — link observed corridors ↔ RTO permit routes; flag informal stops/corridors *(next)*
-6. **Calibrate** — feed observed frequency/coverage back into the engine *(next)*
+5. **Validate vs permits** — corridors↔permits + stops↔register, study-area clipped
+   *(done: `src/validate_permits.py`, `src/informal_stops.py`)*
+6. **Measured calibration** — real cycle times, congestion/speed, operating hours,
+   coverage gaps → feed the engine *(next)*
+7. **Operations & fleet** — duty cycles, turnaround, in-service curve, utilisation *(next)*
+8. **Dashboard reality layer** — observed corridors/stops/congestion tab *(next)*
+
+### Stage-5 validation (study-area clipped, sparse-safe)
+- Corridors: **39 matched · 32 partial · 14 informal** (6 strong, e.g. a 12.4 km
+  corridor run 21× by 7 drivers with no permit); 36 out-of-division (NH-44) excluded.
+- Permits: **75 observed · 41 partial · 70 no-app-data** (partial adoption ≠ unused).
+- Stops: of 43 register stops in the observed footprint only **30% corroborate**;
+  the GPS adds **135 evidence-based candidate stops** (the endpoint-register lacks
+  mid-route stops — an engine P0 gap the traces fill).
 
 ### Sessionising impact (real data)
 1,200 sessions → **2,526 real runs** (604 sessions held ≥2; up to 10). **2,012 h**

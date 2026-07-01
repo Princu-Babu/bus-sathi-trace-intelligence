@@ -68,8 +68,10 @@ See [`PROFILE.md`](PROFILE.md) for the current profile (regenerated per run).
   congestion/bus-speed/dwell are entangled. Publishing a number would be dishonest.
 - **Dropped:** coverage gaps (adoption too concentrated to tell "no service" from
   "no app data").
-7. **Operations & fleet** — duty cycles, turnaround, in-service curve, utilisation *(next)*
-8. **Dashboard reality layer** — observed corridors/stops/congestion tab *(next)*
+- **Long tail closed out** (`src/longtail.py`): the 59% of clean runs outside the
+  corridors is 64% off-terminal + 28% same-terminal loops + 34% out-of-division —
+  only 3% are near-miss OD pairs (max 2 runs · 2 drivers each). **No missed
+  corridors**; 41% coverage is the honest ceiling of current adoption.
 
 ### Stage-5 validation (study-area clipped, sparse-safe)
 - Corridors: **39 matched · 32 partial · 14 informal** (6 strong, e.g. a 12.4 km

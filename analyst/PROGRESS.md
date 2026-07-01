@@ -12,11 +12,14 @@ IDs) were reset — corridor IDs changed._
   (FDR-262, 0.99), C5/C6 Pampore↔Srinagar (FDR-370), C7 Nawa Kadal↔Zoonimar
   (FDR-270), C8 Jehangir Chowk↔Safa Kadal (FDR-575), C16 Jehangir Chowk↔Narbal
   (FDR-455). AI beat the overlap threshold on C1/C8/C16.
-- **NE-Srinagar under-permitted local cluster (finding):** C2, C9, C11, C15, C18 —
-  Soura/Zoonimar/Lal Bazar/Nowshera/Ellahibagh/Gulab Bagh: busy local corridors
-  the formal permits barely cover (≤0.40 overlap). Warrants a formal feeder/loop.
-- **C12 informal:** Nowhatta↔Karan Nagar (SMHS/Medical College access), no permit.
-- **C14 (thin):** Batamaloo↔Budgam may be under-covered — RTO check.
+- **RETRACTED (see AUDIT.md, 2026-07-02):** the "NE-Srinagar under-permitted
+  cluster" (C2/C9/C11/C12/C14/C15/C18). A raw-permit check (614 permits) shows
+  those areas ARE permitted (Lalbazar 26 / Soura 83 / Budgam 42 / Pampore 40
+  endpoints). The ≤0.40 overlap was vs the engine's RATIONALISED geometry — the
+  real signal is **geometry-vs-reality divergence** (engine reconciliation item),
+  NOT informal/under-permitted routes. `is_informal=false` patched into all 7
+  verdicts; tally is now 7 matched / 8 partial / 2 out-of-area / 1 artifact / 0
+  informal.
 - **Out-of-area (2):** C3 Udhampur↔Chenani, C10 Batote↔Mera (Jammu division NH-44).
 - **Artifact (1):** C17 Pampore-terminal shuffle (74% dwell) — exclude; tighten filter.
 
@@ -32,8 +35,8 @@ IDs) were reset — corridor IDs changed._
 | C7 | Nawa Kadal ↔ Zoonimar/Soura | MATCHED (med) | FDR-270 |
 | C8 | Jehangir Chowk ↔ Safa Kadal | MATCHED (high) | FDR-575 (endpoint+len beat overlap) |
 
-AI beat the overlap threshold on C1 & C8 (correct lower-overlap permit); C2 is a
-genuine finding (busy NE-Srinagar local corridor, weak formal coverage).
+AI beat the overlap threshold on C1 & C8 (correct lower-overlap permit). (C2's
+"weak permit" reading was later retracted — see AUDIT.md; divergence, not gap.)
 
 ## How to resume (after shutdown / new session)
 1. `& "D:\plotting\ana\python.exe" src\next_corridor.py`  → next corridor with no verdict.

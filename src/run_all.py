@@ -28,6 +28,7 @@ STAGES = [
     ("calibration.py", True),        # reads corridor_permit_match
     ("speed_layer.py", True),
     ("build_evidence.py", True),
+    ("longtail.py", True),           # diagnostic: decompose the uncovered tail
 ]
 
 

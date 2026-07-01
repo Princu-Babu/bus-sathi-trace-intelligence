@@ -17,8 +17,19 @@ routes to add/cut/resize. It *flags candidates* for the engine/RTO.
 
 ## Coverage limit (state this everywhere)
 The 25 corridors contain only **989 / 2,426 clean runs (41%)**; the 18 analysed
-cover ~40%. The other ~60% of observed service is long-tail one-off ODs. The
-corridor findings describe the **frequently-driven core**, not the whole network.
+cover ~40%. The corridor findings describe the **frequently-driven core**, not
+the whole network.
+
+**The 59% tail, decomposed (`src/longtail.py`, no AI needed):** of 1,437
+uncovered clean runs, **64%** have an endpoint on no robust terminal (depot
+pull-outs / mid-route app toggles / scattered ends), **28%** are same-terminal
+loops, and **34%** sit outside the 10-district study area (NH-44/Jammu). Only
+**40 runs (3%)** form repeat OD pairs under the corridor gate — 20 pairs, of
+which just 11 have ≥2 drivers (all exactly 2 runs · 2 drivers; 5 of the 11 are
+out-of-area). **Conclusion: the tail hides no missed corridors** — it is noise,
+loops, and out-of-division traffic, so the 41% corridor coverage is not
+under-clustering; it is the honest ceiling of this dataset. Near-miss table:
+`data/longtail_pairs.csv` (revisit only if adoption grows).
 
 ## Corrections made in this audit
 1. **RETRACTED the "NE-Srinagar under-permitted cluster."** A raw-permit check

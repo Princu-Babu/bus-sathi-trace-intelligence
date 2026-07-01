@@ -12,6 +12,10 @@ exports/
 *_raw.geojson
 *_raw.json
 
+# ── Analyst working data (bulky/derived) — verdicts + findings ARE committed ─
+analyst/evidence/
+analyst/geocode_cache.json
+
 # ── Python ─────────────────────────────────────────────────────────────
 __pycache__/
 *.pyc

@@ -40,8 +40,8 @@ See [`PROFILE.md`](PROFILE.md) for the current profile (regenerated per run).
    record service-stop dwells *(done: `src/segment.py`)*
 2. **Denoise / map-match** — snap each run to roads via **OSRM `/match`** *(done: `src/match_runs.py`)*
 3. **Cluster stops** — DBSCAN the dwells → recurring/informal stops *(done: `src/stops.py`)*
-4. **Infer corridors** — cluster matched runs sharing road segments → observed frequency *(next)*
-5. **Match to permits** — link observed corridors ↔ RTO permit routes *(next)*
+4. **Infer corridors** — terminal-DBSCAN → OD corridors + observed frequency *(done: `src/corridors.py`)*
+5. **Match to permits** — link observed corridors ↔ RTO permit routes; flag informal stops/corridors *(next)*
 6. **Calibrate** — feed observed frequency/coverage back into the engine *(next)*
 
 ### Sessionising impact (real data)

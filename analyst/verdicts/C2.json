@@ -1,25 +1,27 @@
 {
   "corridor_id": 2,
-  "od_description": "Soura ↔ Nowshera via Lal Bazar (NE old-city Srinagar), with an eastern arm toward Nishat/Harwan that partly follows the SSCL Parimpora–Harwan e-bus alignment.",
+  "od_description": "Soura \u2194 Nowshera via Lal Bazar (NE old-city Srinagar), with an eastern arm toward Nishat/Harwan that partly follows the SSCL Parimpora\u2013Harwan e-bus alignment.",
   "matched_permit": "Parimpora to Harwan via Brein Nishat",
   "matched_permit_id": "SSCL-01",
   "match_confidence": "low",
   "is_informal": false,
   "plausible": true,
-  "stops_verdict": "Strong stops along the Soura–Nowshera–Lal Bazar core (2500/29 at Soura end etc.). Genuine local boarding points.",
-  "narrative": "A busy NE-Srinagar local corridor: Soura ↔ Nowshera via Lal Bazar. All candidate permits are Hazratbal/Parimpora routes with only 0.37-0.41 overlap — geographically off. The map shows the eastern arm coincides with the SSCL-01 Parimpora↔Harwan e-bus (via Brein/Nishat), so it PARTIALLY rides that alignment, but the Soura–Nowshera–Lal Bazar core is not a clean permitted O→D. Notable: 150 runs / 12 drivers of real service on a corridor the formal permit network covers poorly.",
+  "stops_verdict": "Strong stops along the Soura\u2013Nowshera\u2013Lal Bazar core (2500/29 at Soura end etc.). Genuine local boarding points.",
+  "narrative": "A busy NE-Srinagar local corridor: Soura \u2194 Nowshera via Lal Bazar. All candidate permits are Hazratbal/Parimpora routes with only 0.37-0.41 overlap \u2014 geographically off. The map shows the eastern arm coincides with the SSCL-01 Parimpora\u2194Harwan e-bus (via Brein/Nishat), so it PARTIALLY rides that alignment, but the Soura\u2013Nowshera\u2013Lal Bazar core is not a clean permitted O\u2192D. Notable: 150 runs / 12 drivers of real service on a corridor the formal permit network covers poorly.",
   "evidence_used": [
     "geocoded endpoints: Nowshera (A), Soura (B), Lal Bazar (mid)",
-    "map: observed core Soura–Nowshera; eastern arm overlaps SSCL-01 (Parimpora–Harwan via Nishat)",
-    "all permit overlaps low (0.37-0.41) — no clean match",
+    "map: observed core Soura\u2013Nowshera; eastern arm overlaps SSCL-01 (Parimpora\u2013Harwan via Nishat)",
+    "all permit overlaps low (0.37-0.41) \u2014 no clean match",
     "support: 150 runs, 12 drivers, 61 days"
   ],
   "data_quality_flags": [
-    "partial permit match only; core O–D under-served by formal permits — candidate local route for RTO review",
-    "implied_headway 293 min is a partial-adoption artifact"
+    "partial permit match only; core O\u2013D under-served by formal permits \u2014 candidate local route for RTO review",
+    "implied_headway 293 min is a partial-adoption artifact",
+    "CORRECTED: not informal/under-permitted; observed geometry diverges from rationalised route (see correction field)"
   ],
   "needs_human_review": true,
-  "analyst_note": "Finding: busy NE-Srinagar local circulation (Soura–Nowshera–Lal Bazar) with weak formal-permit coverage, partly on the SSCL Parimpora–Harwan alignment.",
+  "analyst_note": "Finding: busy NE-Srinagar local circulation (Soura\u2013Nowshera\u2013Lal Bazar) with weak formal-permit coverage, partly on the SSCL Parimpora\u2013Harwan alignment.",
   "analyst_model": "claude-opus-4-8 (inline)",
-  "ts": "2026-07-02"
+  "ts": "2026-07-02",
+  "correction_raw_permit_check": "RAW-PERMIT CHECK (2026-07-02): the places on this corridor ARE in the raw permit system (e.g. Lalbazar 26 / Soura 83 / Gulabagh 2 / Budgam 42 / Pampore 40 permit endpoints; smaller mahallas are traversed, named for major endpoints). Retracting any 'under-permitted/informal' reading \u2014 the \u22640.40 overlap is with the engine's RATIONALISED geometry, so this is a DIVERGENCE between the rationalised route geometry and observed reality (engine to reconcile), NOT an informal route."
 }

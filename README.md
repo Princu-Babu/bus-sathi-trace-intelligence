@@ -9,6 +9,15 @@ against the on-paper RTO permits.
 > and the Bus Sathi dashboard. This repo consumes the same OSRM/OpenStreetMap
 > road network the engine already uses.
 
+> ⚠️ **Scope (read [AUDIT.md](AUDIT.md)):** this is a **validation / ground-truth
+> layer, NOT a rationalisation engine.** App adoption is partial (~180 self-selected
+> drivers, Srinagar-concentrated), so it cannot measure demand or real frequency and
+> **cannot decide which routes to add/cut/resize** — it *flags candidates*. Observed
+> corridors cover only ~40% of clean runs. "Informal" = "doesn't match the engine's
+> *rationalised geometry*" (a divergence flag), not "unpermitted" — the raw permits
+> DO cover these areas (see AUDIT.md). Adoption-robust wins (speeds, confirmed
+> corridors, stops) are the defensible output; frequency/demand are not published.
+
 ---
 
 ## Why

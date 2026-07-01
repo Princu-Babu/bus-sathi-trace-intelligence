@@ -79,11 +79,17 @@ def main():
     for v in rows("matched"):
         L.append(f"| C{v['corridor_id']} | {v['od_description']} | {v['matched_permit_id']} {v['matched_permit']} | {v['match_confidence']} |")
 
-    L += ["", "## Findings (in-area, no clean permit)", "",
-          "### NE-Srinagar under-permitted local cluster",
-          "Busy local corridors around **Soura / Zoonimar / Lal Bazar / Nowshera / Ellahibagh "
-          "/ Gulab Bagh** with ≤0.40 permit overlap — the formal plan barely covers them. "
-          "A formal feeder/loop here is the clearest actionable gap.", ""]
+    L += ["", "## Findings — in-area corridors that don't match the RATIONALISED geometry", "",
+          "### Geometry divergence, NOT under-permitting  (corrected 2026-07-02)",
+          "A raw-permit check (`E:/kash/existing-routes.csv`, 614 permits) shows these areas ARE "
+          "permitted — **Lalbazar 26, Soura 83, Gulabagh 2, Budgam 42, Pampore 40** permit "
+          "endpoints; smaller mahallas (Nowshera/Zoonimar/Ellahibagh) are traversed under major "
+          "endpoint names. The ≤0.40 overlap is against the engine's **rationalised** route "
+          "geometry, so the real signal is that **the rationalised geometry DIVERGES from observed "
+          "reality** on these corridors (the engine should reconcile its geocoding/consolidation "
+          "there) — **NOT** that they are informal/unpermitted. The earlier 'under-permitted "
+          "cluster' reading is RETRACTED. These corridors are listed as geometry-reconciliation "
+          "candidates:", ""]
     for v in rows("informal") + rows("partial"):
         cid = v["corridor_id"]; p = n(cid)
         L.append(f"- **C{cid}** ({p.get('n_runs')} runs / {p.get('n_drivers')} drivers): "

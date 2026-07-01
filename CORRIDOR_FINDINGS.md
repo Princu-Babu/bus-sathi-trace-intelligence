@@ -5,8 +5,8 @@ _Method: scripts MEASURE (geometry, speed, frequency); an AI analyst (Opus, one 
 ## Tally
 
 - **matched**: 7
-- **partial**: 7
-- **informal**: 1
+- **partial**: 8
+- **informal**: 0
 - **out_of_area**: 2
 - **artifact**: 1
 
@@ -22,15 +22,15 @@ _Method: scripts MEASURE (geometry, speed, frequency); an AI analyst (Opus, one 
 | C8 | Magarmal Bagh / Jehangir Chowk ↔ Safa Kadal via Karan Nagar. A short central-Srinagar route. | FDR-575 Safakadal to Jehangir Chowk | high |
 | C16 | Magarmal Bagh / Jehangir Chowk (central Srinagar) ↔ Narbal (Budgam, on Gulmarg Road) via Qamarwari. | FDR-455 Narbal to Jehangir Chowk | high |
 
-## Findings (in-area, no clean permit)
+## Findings — in-area corridors that don't match the RATIONALISED geometry
 
-### NE-Srinagar under-permitted local cluster
-Busy local corridors around **Soura / Zoonimar / Lal Bazar / Nowshera / Ellahibagh / Gulab Bagh** with ≤0.40 permit overlap — the formal plan barely covers them. A formal feeder/loop here is the clearest actionable gap.
+### Geometry divergence, NOT under-permitting  (corrected 2026-07-02)
+A raw-permit check (`E:/kash/existing-routes.csv`, 614 permits) shows these areas ARE permitted — **Lalbazar 26, Soura 83, Gulabagh 2, Budgam 42, Pampore 40** permit endpoints; smaller mahallas (Nowshera/Zoonimar/Ellahibagh) are traversed under major endpoint names. The ≤0.40 overlap is against the engine's **rationalised** route geometry, so the real signal is that **the rationalised geometry DIVERGES from observed reality** on these corridors (the engine should reconcile its geocoding/consolidation there) — **NOT** that they are informal/unpermitted. The earlier 'under-permitted cluster' reading is RETRACTED. These corridors are listed as geometry-reconciliation candidates:
 
-- **C12** (22 runs / 9 drivers): Nowhatta (old city) ↔ Karan Nagar (SMHS / Medical College area) via Chotta Bazar / Medical College Road. Short central hospital-access corridor.  _(review: True)_
 - **C2** (150 runs / 12 drivers): Soura ↔ Nowshera via Lal Bazar (NE old-city Srinagar), with an eastern arm toward Nishat/Harwan that partly follows the SSCL Parimpora–Harwan e-bus alignment.  _(review: True)_
 - **C9** (32 runs / 7 drivers): Nowshera ↔ Ellahibagh via Lal Bazar (NE Srinagar). A short local corridor in the same NE cluster as C2.  _(review: True)_
 - **C11** (26 runs / 9 drivers): Zoonimar ↔ Gulab Bagh via Lal Bazar (N/NE Srinagar). Third corridor in the NE-Srinagar local cluster (C2, C9, C11).  _(review: True)_
+- **C12** (22 runs / 9 drivers): Nowhatta (old city) ↔ Karan Nagar (SMHS / Medical College area) via Chotta Bazar / Medical College Road. Short central hospital-access corridor.  _(review: True)_
 - **C13** (15 runs / 2 drivers): Karan Nagar ↔ Nawa Kadal via Noor Bagh (NW Srinagar, Qamarwari area).  _(review: True)_
 - **C14** (9 runs / 3 drivers): Batamaloo (main Srinagar terminal) ↔ Budgam / Badgam (Budgam district HQ) via Peerbagh.  _(review: True)_
 - **C15** (7 runs / 4 drivers): Rambagh (SW-central Srinagar) ↔ Ellahibagh (NE) via Rainawari — a long cross-city diagonal along the Dal-east side.  _(review: True)_

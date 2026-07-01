@@ -36,6 +36,8 @@ MIN_RUN_PTS = 20
 MIN_RUN_MIN = 4.0
 STRAIGHTNESS_MIN = 0.15  # net_disp / path below this (and short) => wandering
 TRIM_M = 50              # trim stationary head/tail within this radius
+MIN_EFF_KMH = 6.0        # drop dwell-dominated / near-stationary non-service runs
+                         # (e.g. terminal idling — the C17 artifact class; AUDIT.md)
 
 
 def dwells(lat, lon, ts):
@@ -127,6 +129,8 @@ def segment_session(g):
         if straight < STRAIGHTNESS_MIN and km < 3:   # wandering/idle loops
             continue
         spd = km / (dur_min / 60.0) if dur_min else 0
+        if spd < MIN_EFF_KMH:   # dwell-dominated / near-stationary => not a service run
+            continue
         my_stops = [(clat, clon, dur) for (si, sj, clat, clon, dur) in service if a <= si <= b]
         run_id = f"{g['trip_id'].iloc[0]}_{a}"
         runs.append(dict(run_id=run_id, trip_id=g["trip_id"].iloc[0], driver=g["driver"].iloc[0],

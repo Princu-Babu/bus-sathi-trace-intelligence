@@ -1,0 +1,55 @@
+# Audit & honest scope — app-data trace intelligence
+
+_2026-07-02 sanity pass over the trace-intelligence pipeline (not the engine)._
+
+## What this project IS, and is NOT
+**IS:** a **validation / ground-truthing** layer for the paper-permit plan —
+real corridor geometry, real stops, real operating **speeds**, and a cross-check
+of which engine routes are observed vs where observed reality diverges.
+
+**IS NOT:** a route-rationalisation engine. Rationalisation needs representative
+**demand** and **frequency**; this data has neither:
+- ~180 self-selected drivers, concentrated in the Srinagar core → biased sample;
+- `implied_headway` is a pure adoption artifact (omitted from all claims);
+- no ridership; dwell time is too confounded (layover vs boarding) to use.
+So "a permit with no app data" ≠ "unused", and this data **cannot** decide what
+routes to add/cut/resize. It *flags candidates* for the engine/RTO.
+
+## Coverage limit (state this everywhere)
+The 25 corridors contain only **989 / 2,426 clean runs (41%)**; the 18 analysed
+cover ~40%. The other ~60% of observed service is long-tail one-off ODs. The
+corridor findings describe the **frequently-driven core**, not the whole network.
+
+## Corrections made in this audit
+1. **RETRACTED the "NE-Srinagar under-permitted cluster."** A raw-permit check
+   (`E:/kash/existing-routes.csv`, 614 permits) shows those areas ARE permitted
+   (Lalbazar **26**, Soura **83**, Gulabagh **2**, Budgam **42**, Pampore **40**
+   endpoints). The ≤0.40 overlap was against the engine's *rationalised* geometry,
+   so the real signal is **rationalised-geometry-vs-reality divergence** (engine to
+   reconcile), not informal routes. `is_informal` set to false on C2/C9/C11/C12/
+   C14/C15/C18; each verdict carries a `correction_raw_permit_check` field.
+2. **"Informal" reframed to "unmatched-to-rationalised-geometry (candidate)."**
+   "Informal" against rationalised geometry could just be a differently-geocoded
+   permit — a softer claim.
+3. **"135 informal stops" → inventory enrichment.** The register is endpoint-only,
+   so mid-route stops are "new" by construction; not "135 missing stops".
+
+## Bugs found
+- **Stale verdict join (low impact):** in the post-refine re-run, `calibration.py`
+  ran before `validate_permits.py`, so the advisory `current_script_verdict` in the
+  evidence packets came from the pre-refine `corridor_permit_match` (wrong IDs, e.g.
+  C11/C16 tagged OUT_OF_AREA). The field is advisory only and was overridden in every
+  verdict; the actual `corridor_permit_match.geojson` is correct. Fixed structurally
+  by `src/run_all.py` (enforced stage order).
+- **Segmentation artifact gap:** the wandering filter only triggers for `km < 3`, so
+  C17 (74% dwell, 4.6 km/h, non-service) slipped through as a "corridor". It was
+  already excluded from findings (flagged `artifact`); `segment.py` now also drops
+  runs with `dwell_share > 0.65` or effective speed `< 6 km/h` (applies to future
+  re-runs).
+
+## Honest positioning for the RTO
+Lead with the **adoption-robust** wins: measured operating speeds + the speed
+heatmap, and the set of engine routes **confirmed observed in reality**. Present
+the divergence corridors as **geometry-reconciliation candidates** for the engine.
+Do **not** publish frequency/demand from this data. Broader driver adoption is the
+prerequisite before this could ever *drive* rationalisation.

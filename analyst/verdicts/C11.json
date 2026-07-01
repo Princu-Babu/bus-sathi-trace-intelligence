@@ -1,26 +1,28 @@
 {
   "corridor_id": 11,
-  "od_description": "Zoonimar ↔ Gulab Bagh via Lal Bazar (N/NE Srinagar). Third corridor in the NE-Srinagar local cluster (C2, C9, C11).",
+  "od_description": "Zoonimar \u2194 Gulab Bagh via Lal Bazar (N/NE Srinagar). Third corridor in the NE-Srinagar local cluster (C2, C9, C11).",
   "matched_permit": "Parimpora to Harwan via Brein Nishat",
   "matched_permit_id": "SSCL-01",
   "match_confidence": "low",
   "is_informal": false,
   "plausible": true,
-  "stops_verdict": "Strong stops along Zoonimar–Lal Bazar–Gulab Bagh; genuine local boarding points.",
-  "narrative": "Zoonimar ↔ Gulab Bagh via Lal Bazar — the third busy NE-Srinagar local corridor (with C2, C9) whose formal-permit coverage is very weak (all candidates ≤0.31 overlap, all Parimpora/Hazratbal routes). in_area=true (the stale 'OUT_OF_AREA' script tag is wrong — this is clearly within Srinagar). 26 runs / 9 drivers. Reinforces the finding of an under-served local network in NE Srinagar.",
+  "stops_verdict": "Strong stops along Zoonimar\u2013Lal Bazar\u2013Gulab Bagh; genuine local boarding points.",
+  "narrative": "Zoonimar \u2194 Gulab Bagh via Lal Bazar \u2014 the third busy NE-Srinagar local corridor (with C2, C9) whose formal-permit coverage is very weak (all candidates \u22640.31 overlap, all Parimpora/Hazratbal routes). in_area=true (the stale 'OUT_OF_AREA' script tag is wrong \u2014 this is clearly within Srinagar). 26 runs / 9 drivers. Reinforces the finding of an under-served local network in NE Srinagar.",
   "evidence_used": [
-    "geocoded endpoints: Zoonimar (A), Gulab Bagh (B), Lal Bazar (mid) — all N/NE Srinagar",
-    "all permit overlaps ≤0.31 — no clean match",
+    "geocoded endpoints: Zoonimar (A), Gulab Bagh (B), Lal Bazar (mid) \u2014 all N/NE Srinagar",
+    "all permit overlaps \u22640.31 \u2014 no clean match",
     "same cluster as C2 + C9",
     "support: 26 runs, 9 drivers, 15 days"
   ],
   "data_quality_flags": [
-    "script verdict field said OUT_OF_AREA but in_area=true — corrected to in-area (Srinagar)",
-    "weak permit coverage — NE-Srinagar under-permitted local cluster (C2/C9/C11)",
-    "implied_headway 381 min is a partial-adoption artifact"
+    "script verdict field said OUT_OF_AREA but in_area=true \u2014 corrected to in-area (Srinagar)",
+    "weak permit coverage \u2014 NE-Srinagar under-permitted local cluster (C2/C9/C11)",
+    "implied_headway 381 min is a partial-adoption artifact",
+    "CORRECTED: not informal/under-permitted; observed geometry diverges from rationalised route (see correction field)"
   ],
   "needs_human_review": true,
-  "analyst_note": "Consolidated finding: NE-Srinagar local network (Soura/Zoonimar/Lal Bazar/Nowshera/Ellahibagh/Gulab Bagh) is a real coverage gap in the permit plan — warrants a formal feeder/loop.",
+  "analyst_note": "Consolidated finding: NE-Srinagar local network (Soura/Zoonimar/Lal Bazar/Nowshera/Ellahibagh/Gulab Bagh) is a real coverage gap in the permit plan \u2014 warrants a formal feeder/loop.",
   "analyst_model": "claude-opus-4-8 (inline)",
-  "ts": "2026-07-02"
+  "ts": "2026-07-02",
+  "correction_raw_permit_check": "RAW-PERMIT CHECK (2026-07-02): the places on this corridor ARE in the raw permit system (e.g. Lalbazar 26 / Soura 83 / Gulabagh 2 / Budgam 42 / Pampore 40 permit endpoints; smaller mahallas are traversed, named for major endpoints). Retracting any 'under-permitted/informal' reading \u2014 the \u22640.40 overlap is with the engine's RATIONALISED geometry, so this is a DIVERGENCE between the rationalised route geometry and observed reality (engine to reconcile), NOT an informal route."
 }

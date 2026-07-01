@@ -1,23 +1,25 @@
 {
   "corridor_id": 15,
-  "od_description": "Rambagh (SW-central Srinagar) ↔ Ellahibagh (NE) via Rainawari — a long cross-city diagonal along the Dal-east side.",
+  "od_description": "Rambagh (SW-central Srinagar) \u2194 Ellahibagh (NE) via Rainawari \u2014 a long cross-city diagonal along the Dal-east side.",
   "matched_permit": "Batamaloo to Hazratbal via Khanyar",
   "matched_permit_id": "SSCL-03",
   "match_confidence": "low",
   "is_informal": false,
   "plausible": true,
   "stops_verdict": "Passes strong central stops (1395/39 near Rambagh) and the NE-cluster stops; genuine but corridor support is modest.",
-  "narrative": "A long SW→NE cross-city corridor via Rainawari/Dal-east (Rambagh ↔ Ellahibagh). All candidate permits are Hazratbal/TRC routes with ≤0.38 overlap — no clean match; script flagged INFORMAL. Support modest (7 runs / 4 drivers / 6 days). Touches the same NE cluster (Ellahibagh/Rainawari) as C2/C9/C11. Candidate informal cross-city diagonal — RTO to confirm; not asserted strongly on 4 drivers.",
+  "narrative": "A long SW\u2192NE cross-city corridor via Rainawari/Dal-east (Rambagh \u2194 Ellahibagh). All candidate permits are Hazratbal/TRC routes with \u22640.38 overlap \u2014 no clean match; script flagged INFORMAL. Support modest (7 runs / 4 drivers / 6 days). Touches the same NE cluster (Ellahibagh/Rainawari) as C2/C9/C11. Candidate informal cross-city diagonal \u2014 RTO to confirm; not asserted strongly on 4 drivers.",
   "evidence_used": [
     "geocoded endpoints: Rambagh (A), Ellahibagh (B), Rainawari (mid)",
-    "all permit overlaps ≤0.38 — no clean match; best SSCL-03 0.38",
+    "all permit overlaps \u22640.38 \u2014 no clean match; best SSCL-03 0.38",
     "support modest: 7 runs, 4 drivers, 6 days"
   ],
   "data_quality_flags": [
-    "modest support (4 drivers) — tentative informal candidate",
-    "implied_headway 360 min is a partial-adoption artifact"
+    "modest support (4 drivers) \u2014 tentative informal candidate",
+    "implied_headway 360 min is a partial-adoption artifact",
+    "CORRECTED: not informal/under-permitted; observed geometry diverges from rationalised route (see correction field)"
   ],
   "needs_human_review": true,
   "analyst_model": "claude-opus-4-8 (inline)",
-  "ts": "2026-07-02"
+  "ts": "2026-07-02",
+  "correction_raw_permit_check": "RAW-PERMIT CHECK (2026-07-02): the places on this corridor ARE in the raw permit system (e.g. Lalbazar 26 / Soura 83 / Gulabagh 2 / Budgam 42 / Pampore 40 permit endpoints; smaller mahallas are traversed, named for major endpoints). Retracting any 'under-permitted/informal' reading \u2014 the \u22640.40 overlap is with the engine's RATIONALISED geometry, so this is a DIVERGENCE between the rationalised route geometry and observed reality (engine to reconcile), NOT an informal route."
 }

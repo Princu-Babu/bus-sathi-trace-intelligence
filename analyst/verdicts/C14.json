@@ -1,24 +1,26 @@
 {
   "corridor_id": 14,
-  "od_description": "Batamaloo (main Srinagar terminal) ↔ Budgam / Badgam (Budgam district HQ) via Peerbagh.",
+  "od_description": "Batamaloo (main Srinagar terminal) \u2194 Budgam / Badgam (Budgam district HQ) via Peerbagh.",
   "matched_permit": "",
   "matched_permit_id": "",
   "match_confidence": "low",
   "is_informal": false,
   "plausible": true,
   "stops_verdict": "Batamaloo end well-corroborated (367 visits / 23 drivers = the terminal), but the corridor itself is thin (3 drivers).",
-  "narrative": "Batamaloo ↔ Budgam via Peerbagh — a plausibly major Srinagar↔Budgam corridor (Batamaloo is the main minibus terminal, Budgam a district HQ). But NO candidate permit matches its O–D: all are Batamaloo-to-elsewhere (Arath, Khrew, Drussu) or Parimpora–Humhama, at just 0.22 overlap. THIN support (9 runs / 3 drivers / 6 days). Notable-if-confirmed: the Srinagar↔Budgam corridor may be under-covered by the permit plan — but too thin here to assert. Needs RTO check.",
+  "narrative": "Batamaloo \u2194 Budgam via Peerbagh \u2014 a plausibly major Srinagar\u2194Budgam corridor (Batamaloo is the main minibus terminal, Budgam a district HQ). But NO candidate permit matches its O\u2013D: all are Batamaloo-to-elsewhere (Arath, Khrew, Drussu) or Parimpora\u2013Humhama, at just 0.22 overlap. THIN support (9 runs / 3 drivers / 6 days). Notable-if-confirmed: the Srinagar\u2194Budgam corridor may be under-covered by the permit plan \u2014 but too thin here to assert. Needs RTO check.",
   "evidence_used": [
     "geocoded endpoints: Batamaloo (A, main terminal), Budgam/Badgam (B, district HQ), Peerbagh (mid)",
-    "no candidate matches O–D (all 0.22 overlap, wrong destinations)",
+    "no candidate matches O\u2013D (all 0.22 overlap, wrong destinations)",
     "support THIN: 3 drivers, 6 days"
   ],
   "data_quality_flags": [
-    "thin support (3 drivers) — tentative",
-    "potential under-covered corridor (Srinagar↔Budgam) but not asserted on 3 drivers",
-    "implied_headway 320 min is a partial-adoption artifact"
+    "thin support (3 drivers) \u2014 tentative",
+    "potential under-covered corridor (Srinagar\u2194Budgam) but not asserted on 3 drivers",
+    "implied_headway 320 min is a partial-adoption artifact",
+    "CORRECTED: not informal/under-permitted; observed geometry diverges from rationalised route (see correction field)"
   ],
   "needs_human_review": true,
   "analyst_model": "claude-opus-4-8 (inline)",
-  "ts": "2026-07-02"
+  "ts": "2026-07-02",
+  "correction_raw_permit_check": "RAW-PERMIT CHECK (2026-07-02): the places on this corridor ARE in the raw permit system (e.g. Lalbazar 26 / Soura 83 / Gulabagh 2 / Budgam 42 / Pampore 40 permit endpoints; smaller mahallas are traversed, named for major endpoints). Retracting any 'under-permitted/informal' reading \u2014 the \u22640.40 overlap is with the engine's RATIONALISED geometry, so this is a DIVERGENCE between the rationalised route geometry and observed reality (engine to reconcile), NOT an informal route."
 }

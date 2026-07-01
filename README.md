@@ -54,8 +54,18 @@ See [`PROFILE.md`](PROFILE.md) for the current profile (regenerated per run).
    *(done: `src/validate_permits.py`, `src/informal_stops.py`)*
 6. **Measured calibration** — speed/congestion layer + measured corridor profiles
    *(done: `src/speed_layer.py`, `src/calibration.py`)*
-7. **Operations & fleet** — duty cycles, turnaround, in-service curve, utilisation *(next)*
+7. **Operations & fleet** — duty cycles, turnaround, in-service curve, utilisation
+   *(done: `src/operations.py`)*
 8. **Dashboard reality layer** — observed corridors/stops/congestion tab *(next)*
+
+### Operations (measured, per-vehicle — adoption-robust)
+From 855 observed driver-days (157 drivers): duty day median **7.9 h** span with
+**4.8 h** in service (**76%** utilisation); typical day ~10:20→18:15 IST; median
+**2 runs/day** (p90 6), **56 km/day**. Terminal turnaround (n=1,178 same-terminal
+turns): **median 24 min** (p25 16 / p75 41) — door-to-door incl. layover+filling.
+In-service curve peaks **14:00–17:00 IST** and collapses after **19:00** (the
+observed fleet effectively stops by evening). Shape is robust; absolute level is
+partial-adoption. Full report: `data/operations_report.txt`.
 
 ### Measured calibration (honest, measured-only)
 - Bus moving speed **~21 km/h** (core 18.6 vs periphery 20.9); effective **~12.5 km/h**

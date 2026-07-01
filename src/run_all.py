@@ -29,6 +29,7 @@ STAGES = [
     ("speed_layer.py", True),
     ("build_evidence.py", True),
     ("longtail.py", True),           # diagnostic: decompose the uncovered tail
+    ("operations.py", True),         # duty cycles / turnaround / in-service curve
 ]
 
 

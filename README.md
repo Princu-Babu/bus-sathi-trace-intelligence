@@ -56,7 +56,10 @@ See [`PROFILE.md`](PROFILE.md) for the current profile (regenerated per run).
    *(done: `src/speed_layer.py`, `src/calibration.py`)*
 7. **Operations & fleet** — duty cycles, turnaround, in-service curve, utilisation
    *(done: `src/operations.py`)*
-8. **Dashboard reality layer** — observed corridors/stops/congestion tab *(next)*
+8. **Dashboard reality layer** — observed corridors/stops/speeds/ops tab
+   *(done: `src/export_dashboard.py` → dashboard `public/kashmir-reality/` +
+   `KashmirRealityLayer.tsx` "Reality Layer" tab; aggregate-only, PII-free,
+   every panel labelled "observed, partial adoption")*
 
 ### Operations (measured, per-vehicle — adoption-robust)
 From 855 observed driver-days (157 drivers): duty day median **7.9 h** span with

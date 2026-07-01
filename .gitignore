@@ -1,0 +1,24 @@
+# ── SECRETS — never commit (public repo) ───────────────────────────────
+secrets/
+*serviceAccount*.json
+*firebase-adminsdk*.json
+.env
+.env.*
+
+# ── RAW DATA — driver GPS is PII, never commit ─────────────────────────
+data/
+*.parquet
+exports/
+*_raw.geojson
+*_raw.json
+
+# ── Python ─────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# ── OS / editor ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/

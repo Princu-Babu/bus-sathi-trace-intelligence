@@ -1,0 +1,8 @@
+# Trace export + processing
+firebase-admin>=7.4        # pull trips/routePoints from Firestore
+requests>=2.31             # OSRM /match + /route calls (localhost:5000)
+
+# Geospatial processing (already present in the project conda env at D:\plotting\ana)
+pandas>=2.0
+shapely>=2.0
+geopandas>=0.14

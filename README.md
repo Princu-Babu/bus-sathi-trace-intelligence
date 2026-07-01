@@ -35,11 +35,18 @@ See [`PROFILE.md`](PROFILE.md) for the current profile (regenerated per run).
 ## Pipeline (planned)
 
 1. **Export** — `trips` → local raw store *(done: `src/export_traces.py`)*
-2. **Segment** — split each shift-long trip into individual directional runs
-3. **Denoise / map-match** — snap each run to roads via **OSRM `/match`**
-4. **Infer corridors** — cluster matched runs sharing road segments
-5. **Match to permits** — link observed corridors ↔ RTO permit routes
-6. **Calibrate** — feed observed frequency/coverage back into the engine
+2. **Segment** — split each shift-long trip into runs on time gaps *(prototype: `src/match_traces.py`)*
+3. **Denoise / map-match** — snap each run to roads via **OSRM `/match`** *(prototype, sample-validated)*
+4. **Infer corridors** — cluster matched runs sharing road segments *(next)*
+5. **Match to permits** — link observed corridors ↔ RTO permit routes *(next)*
+6. **Calibrate** — feed observed frequency/coverage back into the engine *(next)*
+
+**Sample map-match finding:** on genuine moving runs the matched line hugs the
+raw GPS tightly (see `data/sample_before_after.png`). OSRM's own `confidence`
+is *not* a good quality gate on its own — it correctly flags idling/parked GPS
+scribble, but also penalises long clean runs. Stage 4 will gate on a
+raw↔matched **agreement** metric (length ratio + point-to-line coverage) plus a
+stop-splitting segmenter, not raw confidence.
 
 ## Run
 

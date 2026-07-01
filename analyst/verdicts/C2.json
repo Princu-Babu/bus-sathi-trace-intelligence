@@ -1,0 +1,25 @@
+{
+  "corridor_id": 2,
+  "od_description": "Soura ↔ Nowshera via Lal Bazar (NE old-city Srinagar), with an eastern arm toward Nishat/Harwan that partly follows the SSCL Parimpora–Harwan e-bus alignment.",
+  "matched_permit": "Parimpora to Harwan via Brein Nishat",
+  "matched_permit_id": "SSCL-01",
+  "match_confidence": "low",
+  "is_informal": false,
+  "plausible": true,
+  "stops_verdict": "Strong stops along the Soura–Nowshera–Lal Bazar core (2500/29 at Soura end etc.). Genuine local boarding points.",
+  "narrative": "A busy NE-Srinagar local corridor: Soura ↔ Nowshera via Lal Bazar. All candidate permits are Hazratbal/Parimpora routes with only 0.37-0.41 overlap — geographically off. The map shows the eastern arm coincides with the SSCL-01 Parimpora↔Harwan e-bus (via Brein/Nishat), so it PARTIALLY rides that alignment, but the Soura–Nowshera–Lal Bazar core is not a clean permitted O→D. Notable: 150 runs / 12 drivers of real service on a corridor the formal permit network covers poorly.",
+  "evidence_used": [
+    "geocoded endpoints: Nowshera (A), Soura (B), Lal Bazar (mid)",
+    "map: observed core Soura–Nowshera; eastern arm overlaps SSCL-01 (Parimpora–Harwan via Nishat)",
+    "all permit overlaps low (0.37-0.41) — no clean match",
+    "support: 150 runs, 12 drivers, 61 days"
+  ],
+  "data_quality_flags": [
+    "partial permit match only; core O–D under-served by formal permits — candidate local route for RTO review",
+    "implied_headway 293 min is a partial-adoption artifact"
+  ],
+  "needs_human_review": true,
+  "analyst_note": "Finding: busy NE-Srinagar local circulation (Soura–Nowshera–Lal Bazar) with weak formal-permit coverage, partly on the SSCL Parimpora–Harwan alignment.",
+  "analyst_model": "claude-opus-4-8 (inline)",
+  "ts": "2026-07-02"
+}

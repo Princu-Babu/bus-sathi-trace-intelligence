@@ -1,0 +1,20 @@
+{
+  "corridor_id": 7,
+  "od_description": "Nawa Kadal / Qamarwari (NW Srinagar) ↔ Zoonimar (near Soura, N Srinagar). A NW–N city cross-route.",
+  "matched_permit": "Soura to Qamarwari",
+  "matched_permit_id": "FDR-270",
+  "match_confidence": "medium",
+  "is_informal": false,
+  "plausible": true,
+  "stops_verdict": "Strong stops along the corridor; genuine boarding points.",
+  "narrative": "Endpoints Zoonimar (adjoins Soura) and Nawa Kadal (on the Qamarwari–Batamaloo road) match FDR-270 'Soura to Qamarwari' at 0.78 overlap — clearly the route. 47 runs / 11 drivers. Not informal.",
+  "evidence_used": [
+    "geocoded endpoints: Nawa Kadal/Qamarwari (A), Zoonimar/Soura (B)",
+    "FDR-270 'Soura to Qamarwari' 0.78 overlap + endpoint-name alignment",
+    "support: 47 runs, 11 drivers, 24 days"
+  ],
+  "data_quality_flags": ["implied_headway 429 min is a partial-adoption artifact"],
+  "needs_human_review": false,
+  "analyst_model": "claude-opus-4-8 (inline)",
+  "ts": "2026-07-02"
+}

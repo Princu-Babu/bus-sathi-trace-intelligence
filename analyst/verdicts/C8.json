@@ -1,0 +1,24 @@
+{
+  "corridor_id": 8,
+  "od_description": "Magarmal Bagh / Jehangir Chowk ↔ Safa Kadal via Karan Nagar. A short central-Srinagar route.",
+  "matched_permit": "Safakadal to Jehangir Chowk",
+  "matched_permit_id": "FDR-575",
+  "match_confidence": "high",
+  "is_informal": false,
+  "plausible": true,
+  "stops_verdict": "Short route with high dwell share (55%) — many closely-spaced central-city stops; genuine boarding points.",
+  "narrative": "Magarmal Bagh (adjoins Jehangir Chowk) ↔ Safa Kadal, 3.5 km. FDR-122 'Jehangir Chowk to Soura' has higher overlap (0.80) but is 10 km and continues to Soura — wrong length/endpoint. FDR-575 'Safakadal to Jehangir Chowk' matches BOTH endpoints and length (permit 3.15 km ≈ observed 3.5 km), so it is the correct match despite 0.67 overlap. Another case of endpoint+length beating raw overlap. 40 runs / 5 drivers.",
+  "evidence_used": [
+    "geocoded endpoints: Magarmal Bagh≈Jehangir Chowk (A), Safa Kadal (B), Karan Nagar (mid)",
+    "FDR-575 'Safakadal to Jehangir Chowk' — endpoint AND length match (3.15 km vs 3.5 km)",
+    "rejected FDR-122 (0.80) — continues to Soura, 10 km",
+    "support: 40 runs, 5 drivers, 13 days"
+  ],
+  "data_quality_flags": [
+    "moderate driver support (5)",
+    "implied_headway 214 min is a partial-adoption artifact"
+  ],
+  "needs_human_review": false,
+  "analyst_model": "claude-opus-4-8 (inline)",
+  "ts": "2026-07-02"
+}

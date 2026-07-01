@@ -1,0 +1,24 @@
+{
+  "corridor_id": 1,
+  "od_description": "Soura ↔ Maisuma / Lal Chowk (central Srinagar) via Munawar Abad and the old city — the N–S city spine. Busiest corridor in the dataset.",
+  "matched_permit": "Soura to Lalchowk",
+  "matched_permit_id": "FDR-050",
+  "match_confidence": "high",
+  "is_informal": false,
+  "plausible": true,
+  "stops_verdict": "Large, strongly corroborated stop set. Busiest 34.07494,74.82846 (4066 visits / 45 drivers ≈ TRC/Lal Chowk terminal); Soura end 34.1366,74.803 (2500/29); Maisuma/Budshah end 34.06546,74.80354 (1395/39). All top stops have 15-45 drivers = genuine boarding points. Two high-dwell points (341s @34.12044; 190s @34.08528) are layover, not stops.",
+  "narrative": "The consolidated Soura↔central spine (this refined corridor absorbed the earlier Soura fragments — 211 runs / 32 drivers / 78 days). Terminal B geocodes to Maisuma (Budshah Bridge / Kothi Bagh), which adjoins Lal Chowk, so the endpoint match is FDR-050 'Soura to Lalchowk' even though 'Chanapora to Soura' has marginally higher trunk overlap (0.64) — Chanapora is the wrong (SW) far end. Same corridor JKRTC lists as e-bus Route 4 (TRC↔Soura via Nowhatta/Gojwara).",
+  "evidence_used": [
+    "geocoded endpoints: Soura (A), Maisuma/Lal Chowk (B), Munawar Abad (mid)",
+    "FDR-050 'Soura to Lalchowk' = exact endpoint match (Maisuma ≈ Lal Chowk)",
+    "web (prior, same corridor): JKRTC e-bus Route 4 TRC↔Soura via Nowhatta",
+    "support: 211 runs, 32 drivers, 78 days — highest in dataset"
+  ],
+  "data_quality_flags": [
+    "implied_headway 377 min is a partial-adoption artifact, not real frequency",
+    "effective 11.4 km/h includes ~37% dwell; moving 18.2 km/h is the travel measure"
+  ],
+  "needs_human_review": false,
+  "analyst_model": "claude-opus-4-8 (inline)",
+  "ts": "2026-07-02"
+}

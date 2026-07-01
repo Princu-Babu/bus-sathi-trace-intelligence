@@ -1,0 +1,21 @@
+{
+  "corridor_id": 3,
+  "od_description": "Udhampur ↔ Chenani on NH-44 (Chenani–Nashri / Dr. S.P. Mookerjee tunnel corridor), Udhampur district — JAMMU division.",
+  "matched_permit": "",
+  "matched_permit_id": "",
+  "match_confidence": "n/a",
+  "is_informal": false,
+  "plausible": true,
+  "stops_verdict": "Strong stops around Udhampur town (139/24, 109/19, 74/23) — genuine, but on a Jammu-division highway route.",
+  "narrative": "OUT OF AREA. This corridor sits ~125 km south of the Srinagar hub, entirely in Jammu division (Udhampur ↔ Chenani on NH-44). in_area=false; the only candidate permit has 0.0 overlap. A real inter-town highway service (105 runs / 27 drivers, moving 31 km/h) captured by the app, but outside the 10-district Kashmir study area — correctly excluded from the Kashmir rationalisation.",
+  "evidence_used": [
+    "in_area=false; dist_hub_km=125",
+    "geocoded endpoints: Udhampur (A), Chenani/tunnel (B) — both Jammu division",
+    "no candidate permit overlaps (0.0)",
+    "highway speed profile: moving 31.4 km/h, low dwell 23%"
+  ],
+  "data_quality_flags": ["out of Kashmir study area — exclude from Kashmir findings"],
+  "needs_human_review": false,
+  "analyst_model": "claude-opus-4-8 (inline)",
+  "ts": "2026-07-02"
+}

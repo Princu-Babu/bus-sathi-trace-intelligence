@@ -1,0 +1,23 @@
+{
+  "corridor_id": 6,
+  "od_description": "Magarmal Bagh / central Srinagar ↔ Pampore (Pulwama) via Lasjan and Pantha Chowk.",
+  "matched_permit": "Srinagar to Pampore",
+  "matched_permit_id": "FDR-370",
+  "match_confidence": "medium",
+  "is_informal": false,
+  "plausible": true,
+  "stops_verdict": "Strong stops along the Srinagar–Pampore corridor; genuine boarding points.",
+  "narrative": "A second Pampore↔central-Srinagar corridor (sibling of C5; here the Srinagar terminal is Magarmal Bagh instead of Sonwar). Higher overlap (0.75) with the Pampore permit family — FDR-370 'Srinagar to Pampore' and FDR-320 'Parimpora to Pampore' both 0.75, FDR-341 'LD to Pampore' 0.73. Best generic endpoint match FDR-370. Clearly permitted; 79 runs / 9 drivers.",
+  "evidence_used": [
+    "geocoded endpoints: Magarmal Bagh (A, central Srinagar), Pampore (B, Pulwama), Lasjan (mid)",
+    "FDR-370 'Srinagar to Pampore' 0.75 overlap; Pampore family 0.73-0.75",
+    "support: 79 runs, 9 drivers, 29 days"
+  ],
+  "data_quality_flags": [
+    "specific permit ambiguous within the Pampore–Srinagar family (cf. C5)",
+    "implied_headway 220 min is a partial-adoption artifact"
+  ],
+  "needs_human_review": false,
+  "analyst_model": "claude-opus-4-8 (inline)",
+  "ts": "2026-07-02"
+}

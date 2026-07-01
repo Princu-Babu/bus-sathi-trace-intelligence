@@ -1,0 +1,23 @@
+{
+  "corridor_id": 5,
+  "od_description": "Pampore (Pulwama) ↔ Sonwar Bagh / central Srinagar, via Pantha Chowk. A Pampore–Srinagar corridor on the SE approach.",
+  "matched_permit": "Srinagar to Pampore",
+  "matched_permit_id": "FDR-370",
+  "match_confidence": "medium",
+  "is_informal": false,
+  "plausible": true,
+  "stops_verdict": "Strong stops along the corridor incl. central Srinagar; genuine boarding points.",
+  "narrative": "A clearly permitted Pampore ↔ central-Srinagar corridor (82 runs / 11 drivers). The Pampore approach is served by a family of similar permits — FDR-320 'Parimpora to Pampore', FDR-341 'LD to Pampore', FDR-370 'Srinagar to Pampore' — all ~0.55-0.56 overlap. Best generic endpoint match is FDR-370 (observed Srinagar end = Sonwar Bagh/central). Not informal; the specific permit within the Pampore family is the only ambiguity.",
+  "evidence_used": [
+    "geocoded endpoints: Pampore (A, Pulwama), Sonwar Bagh (B, central Srinagar)",
+    "candidate Pampore family FDR-320/341/370 all ~0.55-0.56 overlap",
+    "support: 82 runs, 11 drivers, 37 days"
+  ],
+  "data_quality_flags": [
+    "specific permit ambiguous within the Pampore–Srinagar family",
+    "implied_headway 325 min is a partial-adoption artifact"
+  ],
+  "needs_human_review": false,
+  "analyst_model": "claude-opus-4-8 (inline)",
+  "ts": "2026-07-02"
+}

@@ -1,0 +1,20 @@
+{
+  "corridor_id": 4,
+  "od_description": "Soura ↔ Nowgam (Srinagar railway station) via Dal Gate / Munawar Abad. A north–south city route.",
+  "matched_permit": "Soura to Railway Station",
+  "matched_permit_id": "FDR-262",
+  "match_confidence": "high",
+  "is_informal": false,
+  "plausible": true,
+  "stops_verdict": "Strong stops along the route (Soura end 2500/29 etc.). Genuine boarding points.",
+  "narrative": "Clean match. Soura ↔ Nowgam, and Nowgam is the location of Srinagar's railway station — so FDR-262 'Soura to Railway Station' matches at 0.99 overlap (near-perfect), well above the other Soura radials (0.54). 93 runs / 12 drivers.",
+  "evidence_used": [
+    "geocoded endpoints: Soura (A), Nowgam (B = railway station area), Munawar Abad (mid)",
+    "FDR-262 'Soura to Railway Station' at 0.99 overlap — near-perfect + endpoint name match (Nowgam railway station)",
+    "support: 93 runs, 12 drivers, 33 days"
+  ],
+  "data_quality_flags": ["implied_headway 277 min is a partial-adoption artifact"],
+  "needs_human_review": false,
+  "analyst_model": "claude-opus-4-8 (inline)",
+  "ts": "2026-07-02"
+}

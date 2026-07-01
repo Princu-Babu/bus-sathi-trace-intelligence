@@ -83,12 +83,19 @@ def main():
             median_kmh=round(float(sub.real_kmh.median()), 1),
             term_a=[round(float(cent[a][0]), 5), round(float(cent[a][1]), 5)],
             term_b=[round(float(cent[b][0]), 5), round(float(cent[b][1]), 5)],
-            geom=rep["geom"],
+            geom=rep["geom"], members=list(sub.run_id),
         ))
 
     corridors.sort(key=lambda c: c["n_runs"], reverse=True)
     for i, c in enumerate(corridors, 1):
         c["corridor_id"] = i
+
+    import csv as _csv
+    with open(os.path.join(DATA, "run_corridor.csv"), "w", newline="", encoding="utf-8") as f:
+        w = _csv.writer(f); w.writerow(["run_id", "corridor_id"])
+        for c in corridors:
+            for rid in c["members"]:
+                w.writerow([rid, c["corridor_id"]])
 
     with open(os.path.join(DATA, "corridors.geojson"), "w", encoding="utf-8") as f:
         json.dump({"type": "FeatureCollection", "features": [

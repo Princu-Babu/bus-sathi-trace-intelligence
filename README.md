@@ -43,8 +43,22 @@ See [`PROFILE.md`](PROFILE.md) for the current profile (regenerated per run).
 4. **Infer corridors** — terminal-DBSCAN → OD corridors + observed frequency *(done: `src/corridors.py`)*
 5. **Validate vs permits** — corridors↔permits + stops↔register, study-area clipped
    *(done: `src/validate_permits.py`, `src/informal_stops.py`)*
-6. **Measured calibration** — speed/congestion layer *(done: `src/speed_layer.py`)*;
-   real cycle times + rigorous delay factor, operating hours, coverage gaps *(in progress)*
+6. **Measured calibration** — speed/congestion layer + measured corridor profiles
+   *(done: `src/speed_layer.py`, `src/calibration.py`)*
+7. **Operations & fleet** — duty cycles, turnaround, in-service curve, utilisation *(next)*
+8. **Dashboard reality layer** — observed corridors/stops/congestion tab *(next)*
+
+### Measured calibration (honest, measured-only)
+- Bus moving speed **~21 km/h** (core 18.6 vs periphery 20.9); effective **~12.5 km/h**
+  (dwell share ~37%) — cross-checks the speed layer + run-level numbers.
+- **Signal for the engine:** it sizes cycles on OSRM *car* speeds; real buses run
+  far slower → engine cycle times are optimistic; calibrate to the measured speed
+  layer per zone.
+- **Deliberately NOT done:** a recalibrated congestion multiplier. OSRM free-flow
+  is a car profile (55–137 km/h here) — not a valid bus baseline — and
+  congestion/bus-speed/dwell are entangled. Publishing a number would be dishonest.
+- **Dropped:** coverage gaps (adoption too concentrated to tell "no service" from
+  "no app data").
 7. **Operations & fleet** — duty cycles, turnaround, in-service curve, utilisation *(next)*
 8. **Dashboard reality layer** — observed corridors/stops/congestion tab *(next)*
 

@@ -43,8 +43,8 @@ See [`PROFILE.md`](PROFILE.md) for the current profile (regenerated per run).
 4. **Infer corridors** — terminal-DBSCAN → OD corridors + observed frequency *(done: `src/corridors.py`)*
 5. **Validate vs permits** — corridors↔permits + stops↔register, study-area clipped
    *(done: `src/validate_permits.py`, `src/informal_stops.py`)*
-6. **Measured calibration** — real cycle times, congestion/speed, operating hours,
-   coverage gaps → feed the engine *(next)*
+6. **Measured calibration** — speed/congestion layer *(done: `src/speed_layer.py`)*;
+   real cycle times + rigorous delay factor, operating hours, coverage gaps *(in progress)*
 7. **Operations & fleet** — duty cycles, turnaround, in-service curve, utilisation *(next)*
 8. **Dashboard reality layer** — observed corridors/stops/congestion tab *(next)*
 

@@ -91,6 +91,13 @@ partial-adoption. Full report: `data/operations_report.txt`.
   surfaced 30 new Tier-2 candidates. Script-only triage resolved 28 automatically
   (17 out-of-area, 11 already on the plan); only 2 needed a human/AI look — both
   reviewed inline, both plausible local connectors, both too thin to act on.
+- **Regional fragment evidence** (`src/route_evidence.py` + `src/rural_stops.py`,
+  `REGIONAL_EVIDENCE.md`): long-haul routes exist only as broken fragments (app
+  toggled mid-journey), so fragments now vote for road-km instead of whole runs —
+  **172 of 186 plan routes have strong road-level evidence** (Anantnag 59 km: 100%
+  covered by 367 fragments/24 drivers; Gund, Mawan, Sopore likewise) + **64 Tier-2
+  rural stop candidates** (Anantnag 7 / Pulwama 7 / Ganderbal 3). Caveat everywhere:
+  road-level evidence, not end-to-end operation proof. Both are dashboard layers.
 
 ### Stage-5 validation (study-area clipped, sparse-safe)
 - Corridors: **39 matched · 32 partial · 14 informal** (6 strong, e.g. a 12.4 km

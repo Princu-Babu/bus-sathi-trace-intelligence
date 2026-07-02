@@ -30,6 +30,8 @@ STAGES = [
     ("build_evidence.py", True),
     ("longtail.py", True),           # diagnostic: decompose the uncovered tail
     ("operations.py", True),         # duty cycles / turnaround / in-service curve
+    ("route_evidence.py", True),     # fragment aggregation -> plan-route observation index
+    ("rural_stops.py", True),        # Tier-2 rural stop recovery
     ("export_dashboard.py", True),   # PII-free reality layer -> dashboard public/
 ]
 

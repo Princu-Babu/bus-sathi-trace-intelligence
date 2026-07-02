@@ -32,6 +32,7 @@ STAGES = [
     ("operations.py", True),         # duty cycles / turnaround / in-service curve
     ("route_evidence.py", True),     # fragment aggregation -> plan-route observation index
     ("rural_stops.py", True),        # Tier-2 rural stop recovery
+    ("reconciliation.py", True),     # divergence workbench data -> dashboard
     ("export_dashboard.py", True),   # PII-free reality layer -> dashboard public/
 ]
 

@@ -102,6 +102,7 @@ def main():
     ops = dict(
         scope=("Measured from ~157 observed drivers (partial, self-selected adoption). "
                "Per-vehicle physics is robust; this is NOT network supply/frequency/demand."),
+        data_through=str(pd.to_datetime(int(runs.end_ts.max()), unit="ms").strftime("%d %b %Y")),
         drivers=int(runs.driver.nunique()), driver_days=int(len(dd)),
         runs=int(len(runs)), observed_days=int(runs.day.nunique()),
         duty_span_h=round(float(multi.span.median()) / 60, 1),

@@ -289,6 +289,21 @@ para(tf, "The register is endpoint-oriented, so mid-route stops are “new” by
 pic(s, "data/stops_vs_register.png", 7.95, 1.55, h=5.45)
 caption(s, 7.95, 7.04, 5.0, "Register (blue) vs observed stops — red = candidates.", align=PP_ALIGN.CENTER)
 
+# ════════ 8b. REGIONAL FRAGMENT EVIDENCE ════════════════════════════
+s = slide()
+title_bar(s, "second harvest", "The whole valley, recovered from broken fragments",
+          "Long-haul runs exist only as fragments (the app gets toggled mid-journey) — so fragments now vote for road-km instead of whole runs.")
+stat(s, 0.55, 1.85, 3.45, "172 / 186", "plan routes evidenced", "≥50% of alignment driven, ≥2 drivers")
+stat(s, 4.2, 1.85, 3.45, "59 km", "Anantnag–Srinagar", "100% driven · 367 fragments · 24 drivers")
+stat(s, 0.55, 3.62, 3.45, "64", "Tier-2 rural stops", "Anantnag 7 · Pulwama 7 · Ganderbal 3")
+stat(s, 4.2, 3.62, 3.45, "7", "honest gaps", "little app data: Shopian/Kulgam + far NW")
+c = card(s, 0.55, 5.45, 7.1, 1.55, fill=MIST)
+tf = box(s, 0.8, 5.62, 6.6, 1.25)
+para(tf, "Caveat on every popup: this is ROAD-level evidence (“buses drive this alignment”) — "
+         "not proof a specific permit operates end-to-end. Parallel routes share segment evidence.",
+     12, INK, space=0)
+pic(s, "data/route_evidence.png", 8.0, 1.5, h=5.5)
+
 # ════════ 9. LIMITATIONS (dark, honest) ═════════════════════════════
 s = slide(TEALDK)
 tf = box(s, 0.55, 0.4, 12.2, 1.1)
@@ -312,7 +327,7 @@ for h, d in lims:
 # ════════ 10. CLOSE ═════════════════════════════════════════════════
 s = slide()
 title_bar(s, "summary", "A validation layer the plan didn't have before")
-left = [("Verified", "7 plan routes confirmed running in reality; 8 geometry divergences queued for reconciliation; 0 informal routes."),
+left = [("Verified", "7 plan routes confirmed corridor-level + 172 of 186 evidenced at road level from fragments; 8 geometry divergences queued; 0 informal routes."),
         ("Measured", "First real bus speeds (21 / 12.5 km/h), duty cycles, 24-min turnarounds and a 10,600-cell congestion map for Srinagar."),
         ("Corrected", "5 GPS-verified corridors re-anchored to measured physics → plan v3.4.5 (1,011 buses), with the audit trail published.")]
 y = 1.7

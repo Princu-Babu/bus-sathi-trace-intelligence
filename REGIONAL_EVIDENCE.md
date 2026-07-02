@@ -58,6 +58,40 @@ Labelled Tier 2 = thinner evidence than Tier 1, for **field validation**, not
 publication as confirmed stops. Outputs: `data/stops_tier2.geojson` + dashboard
 (red dots under the "stops" toggle).
 
+## Deliverable 3 — observed stops coded in the plan's terminology (`src/make_stop_codes.py`)
+
+Every observed stop now carries a code in the engine's geo-canonical format:
+`<District2>-<Sector2>-X<nn>` — the SAME district letters and alphabetical-tehsil
+sector numbers as `Kashmir_Stops_Master_v4.csv` (via the engine's own
+`AdminIndex`, so numbering is byte-compatible), with an **X-series** stop number
+marking it observed/provisional (no collision with the official register).
+**214 coded stops** (65 raw candidates dropped — strict district-union containment
+caught Jammu-side NH-44 stops that nearest-district fallback would have mislabelled).
+Each row: OSM place name (Nominatim), tehsil/sector, support counts, and the
+nearest register stop + distance as an anchor. E.g. `AN-05-X04` = Pahalgam town,
+242 s median dwell — the Pahalgam arm now has coded, named stop evidence.
+
+## Deliverable 4 — the RTO workbook (`src/make_rto_workbook.py`)
+
+`Kashmir_Observed_GroundTruth_v1.xlsx` — one downloadable on the dashboard
+(Downloads tab + Reality Layer): Read Me (tiers + governing caveat), 214 coded
+Observed Stops, 18 Verified Corridors, 186-route Evidence sheet, 2 Local
+Connectors. Aggregate + anonymised.
+
+## Realism cross-check (app data vs plan outputs)
+
+1. **Fragment intensity vs planned fleet: rho = −0.12** (essentially uncorrelated/
+   negative) — fragments measure *adoption* (Srinagar-heavy), not service intensity.
+   This is the expected signature and confirms why frequency/demand are never
+   inferred from this data.
+2. Strong-evidence share by route type: Urban 97% / Peri-Urban 96% / Regional 86% —
+   uniformly high, no class anomaly.
+3. The 7 weakest-evidence routes are exactly the far-NW/SW periphery (Uri, Kupwara,
+   Bandipora–Baramulla, Pakherpora, Sangerwani) — where adoption is nil. Notably
+   `FDR-593 Garkote` (the one deferred deep-dive FAIL) shows 0% evidence — consistent.
+4. All 64 Tier-2 stop dwells sit inside the 40 s–12 min service-stop window.
+5. Evidence-boost runs double-counted into corridors: 0.
+
 ## What this closes
 
 - The visible mismatch between the speed layer (valley-wide) and the corridor

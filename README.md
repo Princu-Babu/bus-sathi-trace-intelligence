@@ -1,139 +1,126 @@
 # Bus Sathi — Trace Intelligence
 
-Turning **real driver GPS traces** from the Bus Sathi mobile app into a
-ground-truth layer for the Kashmir route-rationalisation plan: clean the noisy
-traces, infer the corridors that are actually being driven, and match them
-against the on-paper RTO permits.
+Turning **real driver GPS from the Bus Sathi mobile app** into a measured
+ground-truth layer for the Kashmir Valley route-rationalisation plan — so the
+plan is no longer built on paper permits alone, but cross-checked against what
+buses actually do on the road.
 
 > Companion to the [route-rationalisation engine](https://github.com/Princu-Babu/kashmir-transit-rationalisation)
-> and the Bus Sathi dashboard. This repo consumes the same OSRM/OpenStreetMap
-> road network the engine already uses.
+> and the Bus Sathi dashboard. Uses the same OSRM/OpenStreetMap road network the
+> engine already uses.
 
 > ⚠️ **Scope (read [AUDIT.md](AUDIT.md)):** this is a **validation / ground-truth
-> layer, NOT a rationalisation engine.** App adoption is partial (~180 self-selected
-> drivers, Srinagar-concentrated), so it cannot measure demand or real frequency and
-> **cannot decide which routes to add/cut/resize** — it *flags candidates*. Observed
-> corridors cover only ~40% of clean runs. "Informal" = "doesn't match the engine's
-> *rationalised geometry*" (a divergence flag), not "unpermitted" — the raw permits
-> DO cover these areas (see AUDIT.md). Adoption-robust wins (speeds, confirmed
-> corridors, stops) are the defensible output; frequency/demand are not published.
+> layer, NOT a rationalisation engine.** App adoption is partial (~157 self-selected
+> drivers, Srinagar-concentrated), so it **cannot measure demand, ridership or real
+> frequency** and cannot decide which routes to add/cut/resize — it *validates,
+> measures and flags candidates*. "Informal" here means "diverges from the plan's
+> rationalised geometry", **not** "unpermitted" (the raw permits cover these areas —
+> see AUDIT.md). Adoption-robust wins (measured speeds, confirmed corridors, road
+> coverage, stops) are the defensible output; frequency/demand are never published.
 
 ---
 
-## Why
+## Why this matters
 
-The rationalisation plan is built from **RTO permits on paper** (geocoded +
-routed). This repo adds the missing half — **what buses actually do on the
+The rationalisation plan is built from **RTO permits on paper** (geocoded and
+routed). This repo supplies the missing half — **what buses measurably do on the
 ground** — from the app's ~5-second GPS pings, so we can:
 
-- **validate** which permits are really being run, and how far reality deviates;
-- **discover** real/informal corridors the permits don't capture;
-- **calibrate** demand & frequency in a future engine version from observed service.
+- **validate** which plan routes are really being driven, and where reality diverges;
+- **measure** the first real Srinagar bus speeds, duty cycles and turnarounds;
+- **discover** the stops and connectors the paper register never captured;
+- **correct** the engine's cycle times where measurement disproves the model.
 
-## The data (live profile)
+## The data (the raw material)
 
-From `src/export_traces.py` against Firestore project `bus-tracker-f24e9`
-(collection `trips`, each doc carries a `routePoints[]` array of `{lat,lng,ts}`):
+Firestore project `bus-tracker-f24e9`, collection `trips` — each document is a
+driver **session** with a `routePoints[]` array of `{lat,lng,ts}` at ~5 s spacing:
 
-- **1,213** trips · **1,031** usable · **180** drivers · **3.8M** GPS points
-- **Feb–Jun 2026**, median sampling **~5 s**, median path **47 km**
-- Low per-trip noise (only ~3% of trips show GPS jumps)
+- **~157 active drivers · 3.8 M GPS points · 1,213 sessions · Feb–Jun 2026**
+- The catch: a recorded "trip" is **not** a bus trip. Drivers leave the app
+  running in the background, so one session bundles 3–10 real service runs plus
+  hours of parking, meals and wandering. **Nothing is used raw.**
 
-See [`PROFILE.md`](PROFILE.md) for the current profile (regenerated per run).
+## What we built (pipeline)
 
-## Pipeline (planned)
+| Stage | Script | What it does |
+|---|---|---|
+| Cache | `pull_cache.py` | pull every session's points once → local pickle |
+| **Sessionise** | `segment.py` | split each session into real service **runs** (cut at terminals ≥12 min & gaps ≥8 min, trim idle, drop wandering) → **2,526 runs**, 2,012 h idle removed |
+| Map-match | `match_runs.py` | snap each run to roads via OSRM `/match`, gate on raw↔matched **agreement** → 2,426 clean runs |
+| Cluster stops | `stops.py` | DBSCAN the dwells → 352 candidate stops (215 strong) |
+| Infer corridors | `corridors.py` | robust-terminal clustering + containment merge → 25 corridors |
+| Validate vs plan | `validate_permits.py` | corridors ↔ plan routes ↔ raw permits, study-area clipped |
+| Measured speeds | `speed_layer.py`, `calibration.py` | per-cell + per-corridor bus speeds |
+| Operations | `operations.py` | duty cycles, turnaround, in-service curve |
+| **AI corridor analyst** | `build_evidence.py` + `analyst/verdicts/` | one evidence packet + individual verdict per corridor |
+| Long-tail mining | `longtail.py`, `tail_corridors.py` | recover evidence from the 59% not in corridors |
+| **Regional evidence** | `route_evidence.py`, `rural_stops.py` | fragment aggregation → valley-wide road coverage + rural stops |
+| Engine reality-check | `reality_check.py` | planned vs measured cycle times → the v3.4.5 correction |
+| Reconciliation | `reconciliation.py` | package the geometry divergences for the engine |
+| Stop coding | `make_stop_codes.py` | code observed stops in the plan's district-sector terminology |
+| Deliverables | `make_rto_workbook.py`, `export_dashboard.py` | the RTO workbook + dashboard layers |
 
-0. **Cache** — pull every session's points once → local pickle *(done: `src/pull_cache.py`)*
-1. **Sessionise** — split each app SESSION into real service RUNS: detect dwells,
-   split at terminals (≥12 min) & gaps (≥8 min), trim idle, drop wandering,
-   record service-stop dwells *(done: `src/segment.py`)*
-2. **Denoise / map-match** — snap each run to roads via **OSRM `/match`** *(done: `src/match_runs.py`)*
-3. **Cluster stops** — DBSCAN the dwells → recurring/informal stops *(done: `src/stops.py`)*
-4. **Infer corridors** — terminal-DBSCAN → OD corridors + observed frequency *(done: `src/corridors.py`)*
-5. **Validate vs permits** — corridors↔permits + stops↔register, study-area clipped
-   *(done: `src/validate_permits.py`, `src/informal_stops.py`)*
-6. **Measured calibration** — speed/congestion layer + measured corridor profiles
-   *(done: `src/speed_layer.py`, `src/calibration.py`)*
-7. **Operations & fleet** — duty cycles, turnaround, in-service curve, utilisation
-   *(done: `src/operations.py`)*
-8. **Dashboard reality layer** — observed corridors/stops/speeds/ops tab
-   *(done: `src/export_dashboard.py` → dashboard `public/kashmir-reality/` +
-   `KashmirRealityLayer.tsx` "Reality Layer" tab; aggregate-only, PII-free,
-   every panel labelled "observed, partial adoption")*
+Run the whole thing in order with `python src/run_all.py`.
 
-### Operations (measured, per-vehicle — adoption-robust)
-From 855 observed driver-days (157 drivers): duty day median **7.9 h** span with
-**4.8 h** in service (**76%** utilisation); typical day ~10:20→18:15 IST; median
-**2 runs/day** (p90 6), **56 km/day**. Terminal turnaround (n=1,178 same-terminal
-turns): **median 24 min** (p25 16 / p75 41) — door-to-door incl. layover+filling.
-In-service curve peaks **14:00–17:00 IST** and collapses after **19:00** (the
-observed fleet effectively stops by evening). Shape is robust; absolute level is
-partial-adoption. Full report: `data/operations_report.txt`.
+## Headline results — what the app data established
 
-### Measured calibration (honest, measured-only)
-- Bus moving speed **~21 km/h** (core 18.6 vs periphery 20.9); effective **~12.5 km/h**
-  (dwell share ~37%) — cross-checks the speed layer + run-level numbers.
-- **Signal for the engine:** it sizes cycles on OSRM *car* speeds; real buses run
-  far slower → engine cycle times are optimistic; calibrate to the measured speed
-  layer per zone.
-- **Deliberately NOT done:** a recalibrated congestion multiplier. OSRM free-flow
-  is a car profile (55–137 km/h here) — not a valid bus baseline — and
-  congestion/bus-speed/dwell are entangled. Publishing a number would be dishonest.
-- **Dropped:** coverage gaps (adoption too concentrated to tell "no service" from
-  "no app data").
-- **Long tail closed out** (`src/longtail.py`): the 59% of clean runs outside the
-  corridors is 64% off-terminal + 28% same-terminal loops + 34% out-of-division —
-  only 3% are near-miss OD pairs (max 2 runs · 2 drivers each). **No missed
-  corridors**; 41% coverage is the honest ceiling of current adoption.
-- **Long tail, mined smarter** (`src/tail_corridors.py` + `validate_tail_candidates.py`,
-  `TAIL_MINING_REPORT.md`): path-shape clustering (not terminal-dependent) recovered
-  +278 runs of evidence for 12 already-published corridors (C1: 211→311 runs) and
-  surfaced 30 new Tier-2 candidates. Script-only triage resolved 28 automatically
-  (17 out-of-area, 11 already on the plan); only 2 needed a human/AI look — both
-  reviewed inline, both plausible local connectors, both too thin to act on.
-- **Regional fragment evidence** (`src/route_evidence.py` + `src/rural_stops.py`,
-  `REGIONAL_EVIDENCE.md`): long-haul routes exist only as broken fragments (app
-  toggled mid-journey), so fragments now vote for road-km instead of whole runs —
-  **172 of 186 plan routes have strong road-level evidence** (Anantnag 59 km: 100%
-  covered by 367 fragments/24 drivers; Gund, Mawan, Sopore likewise) + **64 Tier-2
-  rural stop candidates** (Anantnag 7 / Pulwama 7 / Ganderbal 3). Caveat everywhere:
-  road-level evidence, not end-to-end operation proof. Both are dashboard layers.
+- **First measured Srinagar bus speeds:** ~**21 km/h** moving, ~**12.5 km/h**
+  effective (dwell ≈ 37 % of run time); core 17 vs periphery 24 km/h across a
+  10,600-cell congestion map.
+- **Operations, measured:** 7.9 h duty day / 4.8 h in service (76 % utilisation),
+  median terminal turnaround **24 min**, service ramps 08:00 and **collapses after
+  19:00** — an evening-service gap the plan couldn't have seen otherwise.
+- **Verification:** 7 plan routes confirmed running corridor-level; **172 of 186
+  plan routes** carry strong **road-level** evidence via fragment aggregation
+  (e.g. Anantnag–Srinagar 59 km, 100 % driven, 367 fragments / 24 drivers);
+  8 geometry divergences queued for reconciliation; **0 informal/unpermitted**.
+- **The plan correction (v3.4.5):** 5 GPS-verified core corridors were running at
+  ~2× the engine's planned time (masked by a cycle cap) → cycles re-anchored to
+  measured speed → engine fleet **1,004 → 1,011**.
+- **Stops:** 215 strong observed stops + **64 Tier-2 rural candidates** (Anantnag,
+  Pulwama, Ganderbal), all coded in the plan's own `<District>-<Sector>-X<nn>`
+  terminology for the RTO's stop register.
 
-### Stage-5 validation (study-area clipped, sparse-safe)
-- Corridors: **39 matched · 32 partial · 14 informal** (6 strong, e.g. a 12.4 km
-  corridor run 21× by 7 drivers with no permit); 36 out-of-division (NH-44) excluded.
-- Permits: **75 observed · 41 partial · 70 no-app-data** (partial adoption ≠ unused).
-- Stops: of 43 register stops in the observed footprint only **30% corroborate**;
-  the GPS adds **135 evidence-based candidate stops** (the endpoint-register lacks
-  mid-route stops — an engine P0 gap the traces fill).
+## Deliverables
 
-### Sessionising impact (real data)
-1,200 sessions → **2,526 real runs** (604 sessions held ≥2; up to 10). **2,012 h**
-of background/idle trimmed. Median raw session **209 min** → median real run
-**63 min**; median run **15.8 km** at **13.3 km/h** — realistic bus speeds.
+- **Dashboard "Reality Layer" tab** — observed corridors (by verdict), measured-
+  speed heatmap, real stops (Tier-1 + Tier-2), per-route road-coverage, the 2
+  unmatched connectors, the geometry-reconciliation workbench, and a data-
+  freshness chip. Every panel labelled "observed, partial adoption".
+- **`Kashmir_Observed_GroundTruth_v1.xlsx`** — RTO download: coded stops, corridor
+  verdicts, per-route evidence, connectors (caveats on every sheet).
+- **`Bus_Sathi_Trace_Intelligence_Briefing.pptx`** — 14-slide briefing deck.
+- Reports: [`AUDIT.md`](AUDIT.md), [`REGIONAL_EVIDENCE.md`](REGIONAL_EVIDENCE.md),
+  [`TAIL_MINING_REPORT.md`](TAIL_MINING_REPORT.md), `REALITY_CHECK.md`,
+  `CORRIDOR_FINDINGS.md`.
 
-**Sample map-match finding:** on genuine moving runs the matched line hugs the
-raw GPS tightly (see `data/sample_before_after.png`). OSRM's own `confidence`
-is *not* a good quality gate on its own — it correctly flags idling/parked GPS
-scribble, but also penalises long clean runs. Stage 4 will gate on a
-raw↔matched **agreement** metric (length ratio + point-to-line coverage) plus a
-stop-splitting segmenter, not raw confidence.
+## Honesty calls we deliberately made (and kept)
+
+1. **Retracted** an early "NE-Srinagar under-permitted cluster" finding after a
+   raw-permit check proved those areas are well-permitted — the real signal is
+   geometry divergence, not missing service (see AUDIT.md).
+2. **Refused** to publish a recalibrated congestion multiplier — OSRM's car
+   profile (55–137 km/h) is not a valid bus baseline.
+3. **Never** infer demand, ridership or frequency from partial adoption — a route
+   with no app data is not an unused route.
+4. Everything above the confidence bar is **Tier 1**; thinner evidence is clearly
+   labelled **Tier 2 — field-validate**.
 
 ## Run
 
 ```powershell
 $env:PATH = "D:\plotting\ana;D:\plotting\ana\Library\bin;D:\plotting\ana\Scripts;" + $env:PATH
-& "D:\plotting\ana\python.exe" src\export_traces.py
+& "D:\plotting\ana\python.exe" src\run_all.py
 ```
 
-Requires a Firebase **service-account key** at `secrets/serviceAccount.json`
-(Firebase console → Project settings → Service accounts → *Generate new private
-key*). OSRM must be running on `localhost:5000` for the map-matching stage.
+Requires a Firebase **service-account key** at `secrets/serviceAccount.json` and
+OSRM running on `localhost:5000` for the map-matching stage.
 
-## Privacy & safety (this is a public repo)
+## Privacy & safety (public repo)
 
 - Driver GPS is **PII**. The service-account key (`secrets/`) and all raw traces
   (`data/`) are **gitignored and never committed**.
-- Driver ids/emails are **SHA-256 hashed** in every output.
-- Only aggregate stats + a city-level bbox are written to the committed profile.
+- Driver ids/emails are **SHA-256 hashed** in every output; only aggregate,
+  anonymised layers are published.
 - **Rotate/delete the admin key** in the Firebase console once exporting is done.

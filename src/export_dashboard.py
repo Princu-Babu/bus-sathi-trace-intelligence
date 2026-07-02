@@ -93,6 +93,12 @@ def main():
 
     dj = pd.read_csv(os.path.join(DATA, "driver_days.csv"))
     tn = pd.read_csv(os.path.join(DATA, "turnarounds.csv"))
+
+    # corridor tally derived from the verdict geojson (NOT hardcoded — stays in
+    # sync if verdicts change; audit 2026-07-02 caught the staleness risk).
+    from collections import Counter
+    _cls = Counter(ft["properties"].get("class") for ft in gj["features"])
+    tally = {k: int(_cls.get(k, 0)) for k in ("matched", "partial", "out_of_area", "artifact", "informal")}
     ops = dict(
         scope=("Measured from ~157 observed drivers (partial, self-selected adoption). "
                "Per-vehicle physics is robust; this is NOT network supply/frequency/demand."),
@@ -102,14 +108,14 @@ def main():
         in_service_h=round(float(multi.svc.median()) / 60, 1),
         utilisation=round(float((multi.svc / multi.span).clip(upper=1).median()), 2),
         runs_per_day=int(dd.n.median()), km_per_day=int(dd.km.median()),
-        turnaround_min=int(tn.gap_min.median()) if len(tn) else None,
+        turnaround_min=round(float(tn.gap_min.median())) if len(tn) else None,
         turnaround_n=int(len(tn)),
         day_start=str(pd.to_datetime(dj.first_start, format="%H:%M").median().strftime("%H:%M")),
         day_end=str(pd.to_datetime(dj.last_end, format="%H:%M").median().strftime("%H:%M")),
         peak_hour=int(np.argmax(hours)),
         moving_kmh=21.0, effective_kmh=12.5, dwell_share=0.37,
         in_service_by_hour=curve,
-        corridor_tally=dict(matched=7, partial=8, out_of_area=2, artifact=1, informal=0),
+        corridor_tally=tally,
         coverage_note=("The 25 corridors cover 41% of clean runs; the remaining 59% is "
                        "off-terminal noise, loops and out-of-division traffic (no missed corridors)."))
     with open(os.path.join(OUT, "ops.json"), "w", encoding="utf-8") as f:

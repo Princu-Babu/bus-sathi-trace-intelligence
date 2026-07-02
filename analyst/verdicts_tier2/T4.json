@@ -1,0 +1,22 @@
+{
+  "tail_id": 4,
+  "tier": 2,
+  "od_description": "Chowderi Bagh ↔ Badgam (Budgam town)",
+  "n_runs": 16,
+  "n_drivers": 2,
+  "median_km": 2.7,
+  "median_min": 10.0,
+  "matched_permit": null,
+  "matched_permit_id": null,
+  "match_confidence": "n/a",
+  "is_informal": false,
+  "plausible": true,
+  "stops_verdict": "not separately evaluated (thin support)",
+  "narrative": "A short (2.7 km, ~10 min) intra-town shuttle inside Budgam. Endpoint clustering couldn't form a robust terminal here (only 2 distinct drivers used it), but path-shape clustering found 16 repeat runs riding the identical line, and it is study-area-clipped as inside Kashmir Division. IMPORTANT: Budgam itself is heavily permitted (42 raw permits terminate there, mostly Parimpora/Jehangir Chowk trunk services) — but none of those permits name 'Chowderi Bagh' specifically, and the permit register is O-D pair level, not stop level, so it would not capture a fine-grained intra-town link like this even if informally served today. Read this as evidence of a real short local movement pattern WITHIN an already-served town, not as an under-permitted gap.",
+  "evidence_used": ["path-shape cluster (Jaccard complete-linkage, 16 runs)", "raw-permit registry cross-check (614 permits, 0 exact-name match)", "Nominatim reverse geocode (both endpoints)"],
+  "data_quality_flags": ["only 2 distinct drivers — below the Tier-1 corridor confidence bar (Tier-1 required robust multi-driver terminals)", "median run 10 min — too short to separate 'genuine shuttle' from 'errand/personal driving' with certainty"],
+  "needs_human_review": true,
+  "recommendation": "Not actionable on its own (2 drivers is too thin to size a service). Worth folding into a wider Budgam intra-town stop/circulation study if driver adoption grows there.",
+  "analyst": "inline review, Opus (Claude), same session as Tier-1 audit",
+  "ts": "2026-07-02"
+}

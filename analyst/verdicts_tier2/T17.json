@@ -1,0 +1,22 @@
+{
+  "tail_id": 17,
+  "tier": 2,
+  "od_description": "Gulab Bagh ↔ Hazratbal",
+  "n_runs": 6,
+  "n_drivers": 3,
+  "median_km": 6.4,
+  "median_min": 32.0,
+  "matched_permit": null,
+  "matched_permit_id": null,
+  "match_confidence": "n/a",
+  "is_informal": false,
+  "plausible": true,
+  "stops_verdict": "not separately evaluated (thin support)",
+  "narrative": "A 6.4 km connector between two well-known north-Srinagar localities, run by 3 distinct drivers, 6 times. Neither endpoint area is under-served overall: Hazratbal itself has 62 raw permit endpoints (it's one of the most heavily permitted areas in the whole registry) and Gulab Bagh has 2 (SRINAGAR to GULABAGH, City Bus class). No single raw permit runs this EXACT Gulab Bagh <-> Hazratbal pair by name, so this reads as a genuine informal local connector stitching together two already-served hubs, not a coverage gap. Geometrically clean and study-area-clipped inside Kashmir Division.",
+  "evidence_used": ["path-shape cluster (Jaccard complete-linkage, 6 runs)", "raw-permit registry cross-check (614 permits, 0 exact-name match, but both endpoint areas independently well-permitted)", "Nominatim reverse geocode (both endpoints)"],
+  "data_quality_flags": ["6 runs / 3 drivers is below the Tier-1 corridor confidence bar", "no observed-stop cross-check performed (thin support doesn't justify the extra Nominatim/stop-matching pass)"],
+  "needs_human_review": true,
+  "recommendation": "Plausible informal shortcut between two hubs, not a service gap. Not actionable at this support level; revisit if driver adoption in north Srinagar grows.",
+  "analyst": "inline review, Opus (Claude), same session as Tier-1 audit",
+  "ts": "2026-07-02"
+}

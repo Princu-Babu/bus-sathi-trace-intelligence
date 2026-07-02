@@ -85,6 +85,12 @@ partial-adoption. Full report: `data/operations_report.txt`.
   corridors is 64% off-terminal + 28% same-terminal loops + 34% out-of-division —
   only 3% are near-miss OD pairs (max 2 runs · 2 drivers each). **No missed
   corridors**; 41% coverage is the honest ceiling of current adoption.
+- **Long tail, mined smarter** (`src/tail_corridors.py` + `validate_tail_candidates.py`,
+  `TAIL_MINING_REPORT.md`): path-shape clustering (not terminal-dependent) recovered
+  +278 runs of evidence for 12 already-published corridors (C1: 211→311 runs) and
+  surfaced 30 new Tier-2 candidates. Script-only triage resolved 28 automatically
+  (17 out-of-area, 11 already on the plan); only 2 needed a human/AI look — both
+  reviewed inline, both plausible local connectors, both too thin to act on.
 
 ### Stage-5 validation (study-area clipped, sparse-safe)
 - Corridors: **39 matched · 32 partial · 14 informal** (6 strong, e.g. a 12.4 km

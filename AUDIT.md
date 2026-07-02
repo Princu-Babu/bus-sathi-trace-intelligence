@@ -58,6 +58,22 @@ under-clustering; it is the honest ceiling of this dataset. Near-miss table:
   runs with `dwell_share > 0.65` or effective speed `< 6 km/h` (applies to future
   re-runs).
 
+## Second pass — mining the long tail smartly (2026-07-02, `TAIL_MINING_REPORT.md`)
+The 59% "long tail" (see coverage section above) was re-examined for two things a
+strict robust-terminal requirement can miss, without touching the published 18
+corridors: (A) tail runs that overlap an EXISTING corridor's path by shape but
+didn't cluster into its exact terminal — pure evidence addition, no verdict changed
+(C1 alone: 211→311 runs, 32→43 drivers). (B) path-shape clustering (complete-linkage,
+so no single-linkage "blob" chaining) surfaced 30 new Tier-2 candidates. Script-only
+triage (study-area clip + plan overlap + raw-permit check) resolved 28 of the 30
+automatically (17 out-of-area incl. the two biggest/most convincing-looking ones —
+both turned out to be NH-44 traffic; 11 already match/partial-match the plan). Only
+**2 candidates** needed an actual look — both reviewed inline, both plausible local
+connectors in already-well-permitted areas (Budgam, Hazratbal), both too thin (2-3
+drivers) to be actionable. Conclusion: a dedicated multi-agent framework for the tail
+was not warranted at this data scale — script triage did the sorting, and the handful
+that needed judgment got it directly.
+
 ## Honest positioning for the RTO
 Lead with the **adoption-robust** wins: measured operating speeds + the speed
 heatmap, and the set of engine routes **confirmed observed in reality**. Present

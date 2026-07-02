@@ -86,6 +86,18 @@ def title_bar(s, kicker, title, sub=None):
     if sub: para(tf, sub, 13, GREY, space=0)
 
 
+def pic(s, path, x, y, w=None, h=None):
+    kw = {}
+    if w: kw["width"] = Inches(w)
+    if h: kw["height"] = Inches(h)
+    return s.shapes.add_picture(path, Inches(x), Inches(y), **kw)
+
+
+def caption(s, x, y, w, text, align=PP_ALIGN.LEFT):
+    tf = box(s, x, y, w, 0.5)
+    para(tf, text, 11.5, GREY, italic=True, align=align, space=0)
+
+
 # ════════ 1. TITLE (dark) ═══════════════════════════════════════════
 s = slide(TEALDK)
 tf = box(s, 0.9, 1.6, 11.4, 3.6)
@@ -141,6 +153,22 @@ for h, d in rows:
     r = p.add_run(); r.text = d; r.font.size = Pt(12.5); r.font.color.rgb = GREY; r.font.name = F_BODY
     y += 0.92
 
+# ════════ 3b. VISUAL — SESSIONISING ═════════════════════════════════
+s = slide()
+title_bar(s, "what the cleaning looks like", "One recorded session, ten real bus runs inside it")
+pic(s, "data/session_split.png", 1.15, 1.55, w=11.0)
+caption(s, 1.15, 7.02, 11.0,
+        "Left: one raw Firestore session (7,906 points — a whole working day). Right: the same session decomposed "
+        "into 10 idle-trimmed service runs, each with its own realistic distance and duration.", align=PP_ALIGN.CENTER)
+
+# ════════ 3c. VISUAL — MAP-MATCHING ═════════════════════════════════
+s = slide()
+title_bar(s, "quality gate", "Raw GPS (red) vs road-matched (green)")
+pic(s, "data/sample_before_after.png", 2.75, 1.42, w=7.85)
+caption(s, 1.15, 6.72, 11.0,
+        "On genuine runs the matched line hugs the raw trace. The top-right panel is parked-vehicle GPS scribble — "
+        "exactly what the agreement gate rejects before any analysis.", align=PP_ALIGN.CENTER)
+
 # ════════ 4. CORRIDORS + VERDICTS ═══════════════════════════════════
 s = slide()
 title_bar(s, "step 2 — verification", "18 observed corridors, each judged one by one",
@@ -169,23 +197,33 @@ para(tf, "An early “under-permitted cluster” finding was RETRACTED after che
      12, RGBColor(0xC9, 0xE2, 0xD8), space=8)
 para(tf, "The audit trail (verdict + correction per corridor) ships with the repo.", 11, RGBColor(0x9F, 0xBF, 0xB3), italic=True, space=0)
 
+# ════════ 4b. VISUAL — OVERLAY EVIDENCE ═════════════════════════════
+s = slide()
+title_bar(s, "the overlay evidence", "Observed corridor (green) laid over the plan's candidate routes")
+pic(s, "analyst/evidence/C1.png", 0.75, 1.6, w=5.35)
+pic(s, "analyst/evidence/C2.png", 7.25, 1.6, w=5.35)
+tf = box(s, 0.75, 6.98, 5.35, 0.5)
+para(tf, "C1 — a MATCH: 211 observed runs ride exactly on permit FDR-050 (Soura–Lal Chowk).",
+     11.5, TEAL, bold=True, align=PP_ALIGN.CENTER, space=0)
+tf = box(s, 7.25, 6.98, 5.35, 0.5)
+para(tf, "C2 — a DIVERGENCE: 150 real runs (green) vs the routed lines — the alignment to reconcile.",
+     11.5, AMBER, bold=True, align=PP_ALIGN.CENTER, space=0)
+
 # ════════ 5. MEASURED SPEEDS ════════════════════════════════════════
 s = slide()
 title_bar(s, "step 3 — measurement", "The first measured bus speeds for Srinagar",
           "Not modelled, not assumed — computed from consecutive GPS fixes of buses in revenue service.")
-stat(s, xs[0], 1.85, CARD_W, "21 km/h", "moving speed", "median while the bus is in motion")
-stat(s, xs[1], 1.85, CARD_W, "12.5 km/h", "effective speed", "including every service stop")
-stat(s, xs[2], 1.85, CARD_W, "37%", "of run time at stops", "boarding + waiting dwell share")
-stat(s, xs[3], 1.85, CARD_W, "17 vs 24", "core vs periphery km/h", "10,600-cell congestion heatmap")
-tf = box(s, 0.55, 3.9, 12.2, 0.55)
-para(tf, "Why this matters to the plan:", 14, INK, bold=True)
-c = card(s, 0.55, 4.45, 12.2, 1.7, fill=MIST)
-tf = box(s, 0.85, 4.68, 11.6, 1.9)
-para(tf, "The engine estimates drive time from OSRM's car profile — which implies 55–137 km/h “free flow” on these "
-         "roads. Its congestion penalties close much of that gap, but a car model can never know how a crowded 9-metre "
-         "bus actually moves through Batamaloo at 5 pm.", 13, INK)
-para(tf, "This layer replaces assumption with measurement — per 100 m grid cell, per corridor, per hour.",
-     13.5, TEAL, bold=True, space=0)
+stat(s, 0.55, 1.85, 3.45, "21 km/h", "moving speed", "median while the bus is in motion")
+stat(s, 4.2, 1.85, 3.45, "12.5 km/h", "effective speed", "including every service stop")
+stat(s, 0.55, 3.62, 3.45, "37%", "of run time at stops", "boarding + waiting dwell share")
+stat(s, 4.2, 3.62, 3.45, "17 vs 24", "core vs periphery km/h", "10,600-cell congestion heatmap")
+c = card(s, 0.55, 5.45, 7.1, 1.55, fill=MIST)
+tf = box(s, 0.8, 5.62, 6.6, 1.25)
+para(tf, "Why it matters: the engine's drive times come from a CAR model (55–137 km/h “free flow” here). "
+         "This layer replaces that assumption with measurement — per 100 m cell, per corridor.",
+     12, INK, space=0)
+pic(s, "data/speed_layer.png", 8.05, 1.55, h=5.45)
+caption(s, 8.05, 7.04, 4.9, "Measured speed per cell — red = congested crawl.", align=PP_ALIGN.CENTER)
 
 # ════════ 6. OPERATIONS ═════════════════════════════════════════════
 s = slide()
@@ -239,18 +277,17 @@ para(tf, "+7 buses, all on GPS-verified core corridors", 11.5, RGBColor(0x9F, 0x
 s = slide()
 title_bar(s, "bonus layer", "An evidence-based stop inventory",
           "Every 40 s – 12 min dwell is a vote for a real stopping place. Clustered, they map where buses actually stop.")
-stat(s, xs[0], 1.85, CARD_W, "352", "candidate stops", "from 38,431 observed dwell events")
-stat(s, xs[1], 1.85, CARD_W, "215", "strong stops", "≥3 distinct drivers and ≥10 visits")
-stat(s, xs[2], 1.85, CARD_W, "30%", "register corroboration", "of official stops in the observed footprint")
-stat(s, xs[3], 1.85, CARD_W, "135", "enrichment candidates", "observed stops the register doesn't list")
-c = card(s, 0.55, 3.95, 12.2, 2.2, fill=MIST)
-tf = box(s, 0.85, 4.18, 11.6, 1.85)
-para(tf, "Framed honestly: enrichment, not indictment", 14.5, TEAL, bold=True, font=F_HDR, space=6)
-para(tf, "The official register is endpoint-oriented — mid-route stops are “new” by construction, so 135 candidates "
-         "doesn't mean 135 missing stops. It means the GPS fills exactly the gap the RTO's P0 data-ask (a surveyed "
-         "stop register) was meant to close.", 13, INK, space=6)
-para(tf, "Each candidate ships with coordinates, visit counts and distinct-driver support — ready for field validation.",
-     13, INK, space=0)
+stat(s, 0.55, 1.85, 3.45, "352", "candidate stops", "from 38,431 observed dwell events")
+stat(s, 4.2, 1.85, 3.45, "215", "strong stops", "≥3 distinct drivers and ≥10 visits")
+stat(s, 0.55, 3.62, 3.45, "30%", "register corroboration", "of official stops in the observed footprint")
+stat(s, 4.2, 3.62, 3.45, "135", "enrichment candidates", "observed stops the register doesn't list")
+c = card(s, 0.55, 5.45, 7.1, 1.55, fill=MIST)
+tf = box(s, 0.8, 5.6, 6.6, 1.3)
+para(tf, "Enrichment, not indictment", 13, TEAL, bold=True, font=F_HDR, space=3)
+para(tf, "The register is endpoint-oriented, so mid-route stops are “new” by construction. Each candidate ships "
+         "with coordinates, visits and driver support — ready for field validation.", 11.5, INK, space=0)
+pic(s, "data/stops_vs_register.png", 7.95, 1.55, h=5.45)
+caption(s, 7.95, 7.04, 5.0, "Register (blue) vs observed stops — red = candidates.", align=PP_ALIGN.CENTER)
 
 # ════════ 9. LIMITATIONS (dark, honest) ═════════════════════════════
 s = slide(TEALDK)

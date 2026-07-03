@@ -58,6 +58,7 @@ driver **session** with a `routePoints[]` array of `{lat,lng,ts}` at ~5 s spacin
 | **Regional evidence** | `route_evidence.py`, `rural_stops.py` | fragment aggregation → valley-wide road coverage + rural stops |
 | Engine reality-check | `reality_check.py` | planned vs measured cycle times → the v3.4.5 correction |
 | Reconciliation | `reconciliation.py` | package the geometry divergences for the engine |
+| **Geometry fix (engine-side)** | `../kash/fix_geometries_v345geo*.py` | the reconciliation payoff: re-anchor wrong endpoint pins from the stops register / observed GPS clusters / researched pins, re-route on OSRM, accept only inside the verified km band → **15 of 18 stale route map lines redrawn** (v3.4.5-geo; geometry-only, numbers unchanged) |
 | Stop coding | `make_stop_codes.py` | code observed stops in the plan's district-sector terminology |
 | Deliverables | `make_rto_workbook.py`, `export_dashboard.py` | the RTO workbook + dashboard layers |
 
@@ -78,6 +79,10 @@ Run the whole thing in order with `python src/run_all.py`.
 - **The plan correction (v3.4.5):** 5 GPS-verified core corridors were running at
   ~2× the engine's planned time (masked by a cycle cap) → cycles re-anchored to
   measured speed → engine fleet **1,004 → 1,011**.
+- **Geometry fixed (v3.4.5-geo):** the reconciliation queue turned into action —
+  **15 of 18 stale route map lines** (wrong endpoint pins, not wrong routing) were
+  redrawn from real driven paths / re-anchored termini, accepted only inside each
+  route's verified km band. Geometry-only; every plan number byte-identical.
 - **Stops:** 215 strong observed stops + **64 Tier-2 rural candidates** (Anantnag,
   Pulwama, Ganderbal), all coded in the plan's own `<District>-<Sector>-X<nn>`
   terminology for the RTO's stop register.

@@ -304,6 +304,26 @@ para(tf, "Caveat on every popup: this is ROAD-level evidence (“buses drive thi
      12, INK, space=0)
 pic(s, "data/route_evidence.png", 8.0, 1.5, h=5.5)
 
+# ════════ 8c. GEOMETRY FIX (reconciliation → action) ════════════════
+s = slide()
+title_bar(s, "closing the reconciliation loop", "Real driven paths fixed the plan's map lines",
+          "The plan's distances were corrected earlier, but 18 route map lines still traced a path nobody certified — the endpoint pins were wrong.")
+stat(s, 0.55, 1.9, 3.6, "18", "stale map lines found", "drawn line >25% longer than the corrected km")
+stat(s, 4.35, 1.9, 3.6, "15", "geometries redrawn", "re-anchored termini → real road path, in km band")
+stat(s, 0.55, 3.7, 3.6, "3", "honest holdouts", "one-way systems — flagged, not guessed")
+c = card(s, 4.35, 3.7, 3.6, 1.6, fill=MIST)
+tf = box(s, 4.6, 3.88, 3.1, 1.3)
+para(tf, "The tell", 12.5, TEAL, bold=True, font=F_HDR, space=2)
+para(tf, "Every stale line WAS OSRM's shortest path from its pins — so the pins were the defect, not the routing.",
+     11, INK, space=0)
+c = card(s, 0.55, 5.5, 12.2, 1.5, fill=TEALDK)
+tf = box(s, 0.85, 5.68, 11.6, 1.2)
+para(tf, "How each fix was accepted", 12.5, WHITE, bold=True, font=F_HDR, space=3)
+para(tf, "Re-anchor the termini (stops register · observed GPS stop clusters · researched pins — JVC = SKIMS Bemina; "
+         "Iskanderpora & Badran = Beerwah-belt Budgam villages) → OSRM re-route → accept ONLY inside the route's "
+         "web-verified km band → prefer a real observed run between the pins. Numbers unchanged; only the geometry.",
+     11.5, RGBColor(0xD5, 0xE8, 0xDF), space=0)
+
 # ════════ 9. LIMITATIONS (dark, honest) ═════════════════════════════
 s = slide(TEALDK)
 tf = box(s, 0.55, 0.4, 12.2, 1.1)
